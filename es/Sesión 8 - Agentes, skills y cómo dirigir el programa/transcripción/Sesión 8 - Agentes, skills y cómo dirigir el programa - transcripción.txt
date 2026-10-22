@@ -1,0 +1,43 @@
+Sesión 8 - Agentes, skills y cómo dirigir el programa — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión ocho, la última de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. Siete sesiones armaron las piezas. Hoy las juntamos, y después hablamos de cómo dirigir el programa. Mira la imagen. Dentro del arnés, una skill guarda el método. El modelo aporta criterio. Las herramientas aportan datos y acciones. Y a la salida, una persona aprueba lo que sale.
+
+[0:26] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Explicar cómo se carga una skill, y por qué sale barata. Combinar una skill, herramientas y un modelo en un trabajo repetible. Ponerle barreras de seguridad a un agente. Y planear un despliegue por etapa, rol y medida. Trae el prompt guardado que escribiste en la Sesión tres. En el ejercicio lo vas a convertir en una skill.
+
+[0:50] why
+¿Por qué importa esto? Porque los programas de IA suelen estancarse de tres formas. El know-how se va con la gente. Los mejores prompts viven en el historial de chat de una persona, y si esa persona se va, el método se va con ella. Se instalan skills sin revisar. En una auditoría, aproximadamente un tercio de las skills de un registro público tenía una falla de seguridad. Y los cursos terminan en la Etapa uno. La gente termina la capacitación, pero nadie revisa si el trabajo cambió. Entonces la pregunta es: ¿cómo se vuelve el know-how una práctica compartida, segura y medida?
+
+[1:25] skills
+Empecemos con las skills. Una skill es como una guía de inducción que la IA carga solo cuando la necesita. Mira la figura. Hay seis skills instaladas, pero solo se cargan sus nombres y descripciones. Ahora llega una solicitud. Una descripción coincide. Entonces se cargan las instrucciones completas. Luego, solo el archivo que necesita, la plantilla. Haz la suma: unos dos mil seiscientos tokens, alrededor del uno por ciento de la ventana. Docenas instaladas. Una cargada. Y una descripción vaga es una skill que nunca se activa.
+
+[1:59] skillcode
+Pero una skill es software, así que trata cada skill como código. Lee cada archivo antes de instalarla. Escanéala, y fija la versión, es decir, amárrala a una versión conocida. Instala solo desde tu registro interno, tu repisa de descargas aprobadas. Corre dentro de un contenedor cualquier skill que tenga scripts. Si un agente reescribe su propia skill, primero la aprueba una persona. Y decide quién puede instalar skills antes de activarlas.
+
+[2:27] combo
+Ahora junta una skill, herramientas y un modelo. Cada parte hace lo que hace bien. Mira el ejemplo. La solicitud: revisa el contrato del proveedor. La skill trae una lista de revisión, una plantilla y una regla: las cifras en dólares solo salen del sistema. El modelo llena los huecos. Llama al servidor MCP de contratos para el monto, al lector de PDF para las cláusulas y al ejecutor de código para revisar las fechas. Luego revisa su propio trabajo: los totales coinciden con el registro. Una persona aprueba antes de que algo se guarde de regreso. Y el resultado queda revisado, citado y verificado. Misma solicitud, mismos pasos, para cualquiera que lo corra.
+
+[3:14] agent
+En la Etapa cinco, delegas a un agente un trabajo de varios pasos. Con barreras. Mira la figura. El agente corre dentro de un contenedor. Planea la tarea, lee el archivo de seguimiento y revisa las filas. Luego regresa a planear el borrador y el envío. Cada paso entra al registro. Ahora intenta enviar un correo. Esa acción se detiene en el punto de control, dentro del flujo. Una persona revisa los pasos y aprueba. Solo entonces el correo sale del contenedor. Paso seis: enviado. Revisa los pasos, no solo la respuesta.
+
+[3:51] library
+Todo esto corre sobre una sola biblioteca compartida de prompts y skills. Mira cómo un prompt guardado se vuelve una skill. Su encabezado se vuelve el nombre y la descripción, y su cuerpo se vuelve los pasos. Se agregan la plantilla y las pruebas: dos casos, más uno difícil. Otra persona la revisa. Recibe una versión. Llega a la biblioteca, un solo lugar. Y el chat, los scripts y los agentes toman de ahí.
+
+[4:19] stages
+Ahora, cómo dirigir el programa. Las personas aprenden en cinco etapas, y cada etapa agrega un riesgo nuevo. Mira cómo se arma la escalera. Etapa uno, chat y prompts guardados: el riesgo es usar una app equivocada para los datos. Etapa dos, la API en un contenedor: llaves filtradas. Etapa tres, un flujo de trabajo fijo: errores que pasan al siguiente paso. Etapa cuatro, llamada a herramientas: acciones sin aprobar. Y Etapa cinco, un arnés con skills: skills sin probar. Ahora, dónde para cada rol. Todas las personas paran en la Etapa uno. Los líderes también, con una demostración del resto. Los analistas llegan a la Etapa tres. El personal técnico llega a la Etapa cinco. Todos empiezan en la Etapa uno.
+
+[5:11] measure
+Entonces, ¿cómo sabes que la capacitación funcionó? Cuando el trabajo cambió. Mira cómo aparecen primero las líneas base. Luego entran los números del después. Tiempo por reporte: de seis horas, baja a dos. Correcciones en revisión: de nueve, baja a tres. Reúso de la biblioteca: de cero equipos, sube a cuatro. Flujos en producción: de cero, sube a dos. Son números de ejemplo. El hábito es real: toma tus líneas base antes de empezar la capacitación. También da seguimiento a los hallazgos de seguridad. Y cada prompt, skill y flujo pasa sus pruebas antes de liberarse, y otra vez después de cualquier cambio.
+
+[5:52] rule
+Esta es la idea con la que te tienes que quedar. Escríbelo una vez, como skill. Controla lo que sale. Mide lo que cambia. Porque el know-how se vuelve práctica compartida cuando se revisa, se prueba y se mide.
+
+[6:05] exercise
+Hora de practicar. Pausa el video para este ejercicio. Solo necesitas papel. Parte A. Empaquétalo. Ponle nombre a tu prompt de la Sesión tres, y escribe una descripción que diga cuándo usarlo. Escribe tres solicitudes que deberían activarlo, y dos que no. Luego intercambien. Tu pareja hace de modelo: lee solo la descripción y decide qué solicitudes lo activan. Ajusta la descripción hasta que acierte las cinco. De tarea, agrega la plantilla y los casos de prueba. Parte B. Planea el despliegue. Para un piloto real, anota cuatro cosas: el flujo de trabajo, qué roles llegan a qué etapa, tres medidas con sus líneas base, y la fecha en que vas a revisar los números. Si alguna de tus medidas cuenta cursos en lugar de trabajo, cámbiala.
+
+[6:53] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. ¿Qué se carga antes de que se active una skill? Pausa y responde. ¿Qué etapa completan todos, y dónde paran los analistas? Pausa y responde. ¿Qué aporta cada uno: una skill, las herramientas y un modelo? Pausa y responde. ¿Dónde tiene que aprobar una persona el trabajo de un agente? Pausa y responde. ¿Qué hace que un prompt esté listo para la biblioteca? Pausa y responde. ¿Y puedes nombrar dos medidas que muestren que la capacitación funcionó? Pausa y responde. Si alguna te costó trabajo, regresa a esa parte del video.
+
+[7:32] close
+Y con esto, la serie está completa. Mira cómo aparecen las ocho sesiones: modelos y arneses, resiliencia, prompts seguros, tokens y buscadores, API y contenedores, flujos de trabajo, herramientas y MCP, y hoy, agentes y skills. Y la regla que te llevas: escríbelo una vez, controla lo que sale, mide lo que cambia. Tu siguiente paso es un piloto, medido. Primero, elige un flujo piloto. Segundo, toma tus líneas base. Tercero, arma la biblioteca compartida. Cuarto, corre la Etapa uno para todos. Y pon la fecha de revisión en el calendario antes de salir. Gracias por capacitarte con nosotros. Ahora, a construir algo que tu equipo pueda medir.

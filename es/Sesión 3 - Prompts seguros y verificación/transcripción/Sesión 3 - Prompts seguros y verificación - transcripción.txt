@@ -1,0 +1,46 @@
+Sesión 3 - Prompts seguros y verificación — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión tres de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. Las sesiones uno y dos trataron qué es la IA y qué conserva tu organización. Hoy toca hablar de los hábitos diarios que mantienen tu propio uso seguro y útil. Aquí está toda la sesión en una imagen. Tus datos pasan una revisión de aprobación. Le das a la IA buen contexto. El borrador se verifica. Y una persona firma.
+
+[0:29] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Enunciar la regla clave y aplicarla a una herramienta real. Escribir un prompt con todo el contexto. Verificar un borrador, afirmación por afirmación. Y guardar un prompt como una instrucción revisada. Vamos a dedicarle más tiempo a la verificación, porque es la brecha número uno de los equipos.
+
+[0:50] why
+¿Por qué importa esto? Porque casi todos los problemas con IA en el trabajo nacen de un hábito, no de la tecnología. Que suene bien no significa que sea correcto. Una respuesta segura y bien escrita puede estar mal. Pegar una sola vez datos confidenciales o personales puede tumbar un programa. Y si pides vago, recibes vago. Las peticiones de una línea dan borradores genéricos, y la gente se rinde. Así que la pregunta de esta sesión es: ¿cómo usamos la IA con seguridad, y confiamos en lo que nos da?
+
+[1:23] onerule
+Empecemos con la regla clave. Los datos solo van a una herramienta aprobada para su nivel de sensibilidad. Mira la figura. Tus datos tienen un nivel de sensibilidad. La primera revisión pregunta: ¿esta herramienta está aprobada para estos datos? Si no, cambia primero de herramienta, antes de escribir un solo prompt. Si sí, escribes el prompt, y la IA produce un borrador. Luego viene la segunda revisión: ¿el borrador pasa la verificación? Aquí no pasa. Así que lo corriges y lo vuelves a correr. Esta vez sí pasa. Y una persona responsable firma antes de usar cualquier cosa. Dos revisiones. Una firma.
+
+[2:02] datalevels
+Así se relacionan los datos con la herramienta. Esta tabla es un ejemplo. Tu organización tendrá sus propios niveles y sus propias herramientas aprobadas. La información pública, la que ya se publicó, puede ir casi a cualquier lado. La información interna va solo a una herramienta empresarial aprobada. Y la información sensible, como datos personales, confidenciales o controlados, solo va a una herramienta aprobada para ese nivel. Si los datos y la herramienta no coinciden, corrígelo antes del prompt.
+
+[2:33] accident
+Los accidentes pasan. Lo que importa es lo que haces después. Detente. No sigas conversando ni pegues más cosas para arreglarlo. Repórtalo. Avisa de inmediato a tu contacto de seguridad o privacidad. Registra qué compartiste, en qué herramienta y cuándo. Luego sigue tu proceso de incidentes. Reportar pronto es lo que limita el daño. Borrar en silencio puede empeorarlo.
+
+[2:59] accountable
+Con la regla clave vienen tres obligaciones. Y la versión corta es: la IA redacta, y una persona firma. Responsabilidad humana. Todo lo que se use para tomar una decisión necesita una persona responsable. Registros y transparencia. Algunos trabajos deben indicar que se hicieron con ayuda de IA, y los prompts y resultados pueden ser registros. Y uso responsable. Cuando un resultado afecta a personas, revisa si tiene sesgo, y ten claro a quién escalarlo.
+
+[3:30] briefing
+Ahora, la redacción de prompts. Dale a la IA lo que necesitaría un colega nuevo. Mira la figura. El primer intento es solo: "resume esto". La respuesta es vaga y genérica. Ahora la misma solicitud, con contexto. Un rol: eres especialista en contrataciones. Una tarea: enlista cada entregable con su fecha. Un público: la gerencia del programa. Un formato: una tabla. Y la fuente: el documento adjunto. Ahora la respuesta es un borrador útil. Después la ajustas con peticiones cortas. Hazlo más corto. Agrega los números de cláusula. Pegar la fuente es lo que más importa. Hace que el modelo trabaje con tu material, no con su memoria.
+
+[4:16] verify
+Sigue la verificación. Que suene bien no significa que sea correcto, así que revisa cada afirmación. Mira la figura. El borrador se lee bien. Ahora revisa cada afirmación contra el memo fuente. La fecha está bien. El presupuesto está mal. La fuente dice cuatro punto dos millones, y el borrador dice dos punto cuatro. El nombre de quien aprobó ni siquiera está en la fuente. La cita está bien. Y el número de proveedores también. Dos de cinco afirmaciones se corrigieron antes de que alguien las usara. Así se ve una alucinación en la práctica: segura, fluida y falsa.
+
+[4:55] checklist
+Aquí tienes una lista de verificación para guardar. Revisa las fuentes: ¿cada afirmación sale del material que le diste? Revisa las cifras. Revisa nombres y fechas. Revisa las citas, palabra por palabra. Busca lo que falta, todo lo que dijo la fuente y el borrador omitió. Y revisa el tono y el sesgo, sobre todo cuando el resultado habla de personas.
+
+[5:19] library
+Por último, guarda lo que funciona. Un prompt que funciona se vuelve una instrucción guardada. Mira la figura. Primero, escríbelo con un encabezado: un nombre, un propósito, una persona responsable, las entradas y el nivel de datos aprobado. Segundo, otra persona lo revisa. Tercero, se prueba: cada caso de prueba tiene un resultado de referencia. Y se agrega un caso difícil, como un documento con una instrucción oculta. Cuarto, se publica en la biblioteca del equipo. Y quinto, otros equipos lo reutilizan. Y cuando cambia el prompt o el modelo, vuelve a pasar por revisión y pruebas.
+
+[5:58] rule
+Esta es la idea con la que te tienes que quedar. Herramienta aprobada para cada dato. Dale contexto como a un colega. Revisa cada afirmación. Y una persona firma. Son dos revisiones antes de usar cualquier cosa: los datos están autorizados para la herramienta, y el borrador pasa la verificación.
+
+[6:17] exercise
+Hora de practicar. Pausa el video para este ejercicio. Parte A. Toma un memo corto y un resumen de ese memo hecho con IA. Encuentra los tres errores del resumen. Luego reescribe "resume esto" como un prompt con contexto, córrelo en una herramienta aprobada y revisa cada afirmación del nuevo borrador. Parte B. Convierte tu prompt en una instrucción guardada. Dale un nombre y un propósito, una persona responsable y las entradas, un nivel de datos aprobado y dos casos de prueba. Cuando termines, pregúntate: ¿qué detectó tu revisión?
+
+[6:52] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. ¿Cuál es la regla clave? Pausa y responde. ¿Qué haces justo después de pegar algo que no debías? Pausa y responde. ¿Qué partes tiene un prompt con contexto? Pausa y responde. ¿Puedes mencionar cuatro cosas que revisar antes de usar un borrador? Pausa y responde. ¿Quién es responsable del trabajo hecho con ayuda de IA? Pausa y responde. ¿Y qué necesita un prompt para entrar a la biblioteca del equipo? Pausa y responde. Si alguna te costó trabajo, regresa a esa parte del video.
+
+[7:29] bridge
+Esto es lo que sigue. Hoy pegamos la fuente en el prompt, para que el modelo trabaje con nuestro material. Pero ¿qué puede ver realmente el modelo cuando responde? Eso es la Sesión cuatro: tokens, contexto y cómo encuentra la IA tus datos. Qué cabe en la ventana de contexto, qué se descarta y cómo obtienen las herramientas tu información. Gracias por ver. Nos vemos en la Sesión cuatro.

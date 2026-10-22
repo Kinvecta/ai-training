@@ -1,0 +1,46 @@
+Sesión 4 - Tokens, contexto y cómo encuentra la IA tus datos — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión cuatro de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. La Sesión tres terminó con una pregunta: ¿qué puede ver realmente el modelo cuando responde? Hoy hay dos respuestas. Primero, los tokens: la unidad que el modelo lee, escribe y cobra. Y segundo, los buscadores: las formas en que tus herramientas obtienen tus datos. Mira la figura. La ventana de contexto se llena con todo lo que mandas. Un buscador trae tus documentos. Y la respuesta sale por arriba.
+
+[0:34] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Explicar qué es un token y por qué importa. Leer qué llena una ventana de contexto. Estimar el costo en tokens de un flujo de trabajo. Y elegir el buscador correcto para tus datos. Vamos a dedicarle más tiempo a los buscadores, porque de ahí vienen casi todas las quejas de "la IA no lo encontró".
+
+[0:57] why
+¿Por qué importa esto? Porque tres quejas comunes tienen una sola causa. "La factura nos sorprendió." El costo viene del contexto que se reenvía en ciclos y chats largos, no de la respuesta. "Se le olvidó lo que dije." Los chats largos llenan la ventana, y los primeros turnos se descartan. Y "no encontró la tabla." Se usó el buscador equivocado, y la tabla se volvió prosa. Así que la pregunta es: ¿qué ve el modelo, y cuánto cuesta?
+
+[1:24] tokens
+Empecemos con los tokens. Un token es el pedazo de texto que el modelo lee y escribe. Mira la figura. Aquí hay una frase: "El cierre trimestral es el viernes." Seis palabras. Ahora mira cómo se parte. Se vuelve ocho tokens. Ahora, una línea de códigos y cifras: una orden de compra y un monto en dólares. Se parte en catorce tokens pequeños. Las cifras y los códigos cuestan más. Y aquí está el detalle. El tokenizador de otro proveedor cuenta la misma frase de forma distinta. Cada proveedor cuenta distinto, así que toma cualquier conteo como una estimación.
+
+[2:01] tokentypes
+No todos los tokens son iguales, ni cuestan lo mismo. Los tokens de entrada son todo lo que mandas: instrucciones, herramientas, documentos, historial y la pregunta. Los tokens de salida son la respuesta. Cuestan más, y son lo que más te hace esperar. Los tokens de razonamiento se cobran como salida. Los tokens en caché son un descuento por un prefijo estable. Las imágenes y el audio también se vuelven tokens. Cada herramienta conectada agrega su descripción. Y los tokens de embedding se cobran cuando se indexan los documentos. La regla: lo que mandas cuesta más que lo que recibes.
+
+[2:37] budget
+Ahora, la ventana de contexto. Es un solo presupuesto fijo, que comparten la entrada y la salida. Mira la figura. Primero entra el prompt de sistema. Luego las definiciones de herramientas. Luego el historial del chat. Luego los documentos recuperados, que suelen ser el bloque más grande. Luego la pregunta nueva. Y arriba se reserva espacio para la respuesta. El prompt de sistema y las definiciones de herramientas son iguales cada vez, así que se pueden guardar en caché y releer barato. Ahora mira el recibo. Los tokens de entrada son la mayor parte de la factura. Las lecturas en caché son baratas. Y la salida es pequeña.
+
+[3:20] chat
+Por esto los chats largos salen caros. Cada turno reenvía toda la conversación. Mira la figura. En el primer turno entran el prompt de sistema y tu pregunta, y regresa una respuesta. En el segundo turno se manda todo otra vez, más la pregunta nueva. Y en el tercer turno, la entrada es todavía más grande. La salida se queda pequeña. Guardar en caché convierte el historial repetido en lecturas baratas. El hábito que hay que enseñar es simple: cuando cambie el tema, abre un chat nuevo.
+
+[3:52] matters
+Entonces, ¿por qué le deben importar los tokens a tu equipo? Por seis razones. Costo: tokens por ejecución, por ejecuciones al mes. Capacidad: una sola ventana, compartida por todo. Velocidad: la salida se escribe un token a la vez. Límite de uso: un proceso que funciona en pruebas puede frenarse en producción. Calidad: un contexto ligero le gana a uno saturado. Y cambiar de modelo: los conteos, los costos y los límites cambian con el tokenizador.
+
+[4:26] finders
+Ahora, cómo encuentra la IA tus datos. El modelo solo ve lo que le dan los buscadores. Mira la figura. Una pregunta: ¿qué proveedores tuvieron la calificación más baja en seguridad en sitio el trimestre pasado? El arnés, el software que rodea al modelo, la manda a cuatro buscadores a la vez. La búsqueda semántica encuentra un pasaje de un memo por su significado. La búsqueda por palabras clave encuentra el ai-di exacto de un proveedor. Una consulta estructurada trae filas de la tabla de calificaciones. Y la recuperación multimodal encuentra una gráfica en una página escaneada. El arnés combina los resultados y se los entrega al modelo con citas. La respuesta cita el memo y la tabla. El modelo nunca busca por su cuenta. Lee lo que le regresan los buscadores.
+
+[5:18] sixways
+Hay seis formas en que la IA obtiene datos, y ninguna cubre todo. Todo en el contexto, para conjuntos pequeños y estables. Búsqueda semántica, para encontrar significado en mucha prosa. Búsqueda por palabras clave, para nombres, identificadores y códigos exactos. Búsqueda agéntica, donde la IA planea sus propias búsquedas en archivos vivos. Consultas estructuradas, para registros exactos de tablas y bases de datos. Y recuperación multimodal, para escaneos, diapositivas y gráficas. Un punto de seguridad. Un índice es una copia de tus datos. Necesita las mismas reglas de acceso y aprobaciones que la fuente.
+
+[5:59] datatypes
+Así que elige el buscador según los datos. Documentos de texto y memos: búsqueda semántica y por palabras clave, juntas. Una tabla o una hoja de cálculo: consultas estructuradas, porque los totales deben salir de una consulta, no de que el modelo lea filas. Imágenes y escaneos: recuperación multimodal, o un modelo de visión. Código: búsqueda agéntica en los archivos vivos. Y registros vivos: solo consultas estructuradas, por una conexión aprobada.
+
+[6:27] rule
+Esta es la idea con la que te tienes que quedar. Manda menos. Guarda en caché lo que no cambia. Usa el buscador correcto. Porque el modelo solo ve lo que le mandas, y lo que le regresan los buscadores.
+
+[6:40] exercise
+Hora de practicar. Pausa el video para este ejercicio. Parte A. Cuéntalo. Pega uno de tus propios prompts, que no sea sensible, en un contador de tokens aprobado. Anota los tokens de entrada y de salida. Multiplica por cuántas veces se corre al mes. Luego pregúntate: ¿cuánto ahorraría un prompt más corto, o el caché? Parte B. Encuéntralo. Para seis preguntas reales, elige el buscador correcto. Una política de trabajo remoto. Un número de ticket. El gasto total por proveedor. Una diapositiva del organigrama. La lógica de reintentos en tu código. Y un informe de tres páginas. Si elegiste búsqueda semántica para el gasto total, piénsalo otra vez.
+
+[7:20] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. ¿Más o menos cuánto texto es un token? Pausa y responde. ¿Por qué los chats largos cuestan más en cada turno? Pausa y responde. ¿Qué comparte la ventana de contexto? Pausa y responde. ¿Qué abarata el caché? Pausa y responde. ¿Puedes mencionar tres formas en que la IA obtiene datos? Pausa y responde. ¿Y por qué un índice de búsqueda es un tema de seguridad? Pausa y responde. Si alguna te costó trabajo, regresa a esa parte del video.
+
+[7:53] bridge
+Esto es lo que sigue. Hoy vimos qué llena una solicitud y cómo se obtienen los datos. Pero ¿cómo llega tu propio software al modelo de forma segura? Eso es la Sesión cinco: interfaces API, endpoints y contenedores. Llamar al modelo desde tu código, dejar el endpoint en la configuración, y correr todo sellado, con una sola salida. Gracias por ver. Nos vemos en la Sesión cinco.

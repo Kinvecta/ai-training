@@ -1,0 +1,46 @@
+Sesión 5 - APIs, endpoints y contenedores — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión cinco de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. La Sesión cuatro terminó con una pregunta: ¿cómo llega tu propio software al modelo de forma segura? Eso vemos hoy. Cuando tu código llama al modelo, los controles son de tu equipo. Mira la figura. Tu código está sellado dentro de un contenedor. La solicitud sale por una sola puerta, hacia un endpoint aprobado, y la respuesta regresa. Cualquier otra cosa que intente salir se bloquea en la pared.
+
+[0:32] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Explicar qué cambia cuando tu código llama al modelo. Elegir un endpoint y dejarlo en la configuración. Describir qué permite un contenedor y qué bloquea. Y nombrar los cuatro controles de ejecución. Hoy nadie tiene que escribir código. Solo necesitas saber qué pedir.
+
+[0:54] why
+¿Por qué importa esto? Porque hay tres problemas que empiezan el día que el código llama al modelo. "La llave estaba en el script". Una llave de API pegada termina en el código, en el repositorio y en los registros. "No podemos cambiar de proveedor". El endpoint y el nombre del modelo están escritos a mano en cincuenta lugares. Y "nadie sabe qué se ejecutó". No hay registro de qué prompt, qué versión del modelo ni quién lo revisó. Entonces la pregunta es: ¿de quién son los controles cuando el código llama al modelo?
+
+[1:27] api
+Empecemos por la API. A través de la API, tu software se vuelve el arnés. Mira la figura. Tu código carga el prompt guardado de la biblioteca. Agrega el documento. Luego arma la solicitud, con una versión del modelo fijada. La manda al endpoint que indica la configuración. El modelo responde. La respuesta regresa como borrador. Y cada llamada queda registrada. Recuerda: la API no es la app de chat. Los términos, la retención de datos y la autorización son distintos.
+
+[1:59] own
+La app de chat hacía seis trabajos por ti. Ahora los hace tu código. Mira cómo pasan al otro lado. Uno: las instrucciones, un prompt guardado en la biblioteca. Dos: el manejo de datos, qué va a dónde. Tres: el registro, quién ejecutó qué. Cuatro: las llaves y la red. Cinco: la revisión, una persona firma. Y seis: el costo, con límites para cada flujo de trabajo. Ten presentes esos números. Regresan en todas las figuras que siguen.
+
+[2:30] endpoints
+Ahora, de dónde viene la API. Hay tres puertas de entrada al mismo modelo. Mira el archivo de configuración. Primero, el endpoint apunta a la API del proveedor, la del propio fabricante. Cambias una línea y apunta a un proveedor de nube, dentro de tu cuenta de nube. Una línea más y es la plataforma aprobada, el único gateway aprobado de tu organización. El modelo detrás de cada puerta es el mismo. Después, fija la versión del modelo. Lo que cambia es el contrato, así que autoriza primero y luego elige el modelo.
+
+[3:07] config
+Con cuatro hábitos, cambiar de puerta es cosa de una sola línea. Deja el endpoint en la configuración, no en el código. Fija la versión del modelo, nunca "latest". Usa una sola forma de solicitud, escrita igual para cada puerta. Y pon ese endpoint en la lista de permitidos, para que sea la única dirección permitida del contenedor.
+
+[3:30] container
+Ahora, los contenedores. Cada arnés, y cada flujo de trabajo que llama al modelo, corre sellado en un contenedor. Mira lo que hay adentro: exactamente las bibliotecas que se revisaron, tu código y el prompt guardado, y una llave inyectada en tiempo de ejecución. Ese es el trabajo cuatro. Hay una sola salida. La llamada al endpoint del modelo pasa. Una solicitud a cualquier otro sitio web se bloquea en la pared. Así, una instrucción inyectada no tiene a dónde mandar tus datos. Un intento de leer los archivos de la propia computadora también se bloquea. Y la misma imagen escaneada se autoriza y se vuelve a desplegar. Eso es lo que hace más rápidas las aprobaciones.
+
+[4:15] controls
+Luego, los cuatro controles de ejecución. Cada ejecución deja constancia. Mira la figura. Uno: la llave llega del gestor de secretos, nunca del código. Dos: la versión del modelo está fijada, así que cambias a propósito, después de que pasan las pruebas. Tres: el registro de auditoría se llena. Quién lo ejecutó, qué prompt, qué modelo, cuántos tokens y quién lo revisó. Cuatro: el medidor de costo sube, ejecución tras ejecución, hasta que se detiene en el límite.
+
+[4:50] available
+¿Qué puede hacer tu equipo hoy? Más de lo que crees. Mira la escalera. Solo chat ilumina el escalón uno. Chat más una API ilumina los escalones dos y tres: una llamada desde código y un flujo de trabajo. Eso ya está aquí, con lo que tiene la mayoría de los equipos. La llamada a herramientas agrega el escalón cuatro. Y los agentes y las skills agregan el escalón cinco.
+
+[5:16] rule
+Esta es la idea que tienes que llevarte. ¿De quién son los controles? De tu equipo. Llámalo desde tu código. Deja el endpoint en la configuración. Séllalo en un contenedor. Porque tu código se vuelve el arnés, así que los controles son de tu equipo.
+
+[5:34] exercise
+Hora de practicar. Pausa el video para este ejercicio. Las pistas están en la diapositiva; tápalas si quieres el reto. Parte A. Léelo. Aquí hay un pedazo corto de pseudocódigo, donde "doc" es el archivo que se resume. Encuentra cinco problemas. Parte B. Enciérralo. Para un flujo de trabajo semanal que resume contratos, llena el contenedor en blanco: qué hay adentro, el único endpoint al que puede llegar, de dónde viene la llave, qué registra cada ejecución y su límite de uso y de costo. Si lo primero que encontraste fue la llave en el código, le pasa a casi todo el mundo.
+
+[6:15] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. Cuando tu código llama al modelo en lugar de la app de chat, ¿de qué tiene que hacerse cargo tu equipo? Pausa y responde. ¿Puedes nombrar los tres tipos de endpoint? Pausa y responde. ¿Qué eliges primero, la puerta o el modelo, y por qué? Pausa y responde. ¿Por qué dejar el endpoint en la configuración? Pausa y responde. ¿A qué puede llegar un contenedor? Pausa y responde. ¿Y puedes nombrar los cuatro controles de ejecución? Pausa y responde. Si alguna te costó trabajo, regresa a esa parte del video.
+
+[6:56] bridge
+Esto es lo que sigue. Hoy mandamos una solicitud desde código, de forma segura. Pero ¿cómo conviertes una tarea repetida en un flujo de trabajo fijo? Eso es la Sesión seis: cómo construir flujos de trabajo. Pasos fijos que decide el script, una revisión y una persona que firma.
+
+[7:15] sandbox
+Una última diapositiva, para quien facilita: arma una vez el sandbox de la Etapa dos y reinícialo para cada grupo. Una imagen base escaneada de antemano. Llaves de capacitación con límites bajos. Documentos de ejemplo inventados. Y una biblioteca inicial de prompts con casos de prueba. El tiempo de clase es para aprender, no para configurar. Gracias por ver. Nos vemos en la Sesión seis.

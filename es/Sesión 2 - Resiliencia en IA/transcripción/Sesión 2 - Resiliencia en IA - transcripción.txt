@@ -1,0 +1,49 @@
+Sesión 2 - Resiliencia en IA — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión dos de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. En la Sesión uno separamos el modelo del arnés, en inglés harness, que lo rodea. Hoy preguntamos qué significa eso para tu organización. Si los modelos, los proveedores y las apps siguen cambiando, ¿qué es tuyo y sobrevive a un cambio? Ten en mente esta imagen. El modelo de arriba se cambia una y otra vez. Los siete fundamentos de abajo nunca cambian.
+
+[0:30] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Explicar qué hace agnóstica a una organización. Nombrar los siete fundamentos que le pertenecen. Mostrar cómo cambiar de modelo se vuelve un cambio de configuración. Y hacer una auditoría de dependencia a un flujo de trabajo real. Empezamos por lo que rentas y lo que es tuyo, luego recorremos los siete fundamentos y terminamos con una auditoría práctica.
+
+[0:56] why
+¿Por qué importa esto? Porque el modelo que usas hoy no será el que uses el próximo año. Se retiran modelos. Las versiones se reemplazan, y las viejas se apagan cuando lo decide el proveedor, no tú. Cambian los términos. Los precios, el manejo de datos y los límites se mueven, a veces con poco aviso. Y cambia lo aprobado. Lo que seguridad autoriza hoy puede cambiar en cualquier sentido. Así que la pregunta de esta sesión es sencilla. ¿Qué es nuestro y sobrevive a un cambio?
+
+[1:25] agnostic
+Definamos la meta. Una organización es agnóstica cuando puede cambiar el modelo, o todo el proveedor, sin reconstruir su trabajo. Mira la figura. Arriba está lo que rentas: el modelo, y la app o el arnés que lo rodea. Cuenta con que van a cambiar. Abajo está lo que es tuyo: siete fundamentos. Se encuentran en interfaces que tú controlas, como MCP, un esquema de API neutral respecto al proveedor y el formato de las skills. Ahora mira el primer cambio. Cambia el modelo. Nada de abajo cambia. Luego cambia la app. Y otra vez, nada de abajo cambia. Cambia lo de arriba. Conserva lo de abajo.
+
+[2:04] switches
+Un cambio puede pasar en cuatro niveles. La versión del modelo: mismo proveedor, modelo más nuevo. Es el cambio más común y el más fácil de pasar por alto. El proveedor: otra familia de modelos por completo. El endpoint: el mismo modelo por otra puerta, como pasar de la API del propio proveedor a un proveedor de nube. Y el arnés: otra app u otra herramienta de agentes. Cada cambio sale barato solo si algo ya es cierto. Los prompts y las evals, las evaluaciones guardadas, ya están guardados. La capa del flujo es neutral respecto al proveedor. El endpoint vive en la configuración. Y tus herramientas y skills son portables.
+
+[2:44] isnot
+Vamos a aclarar cuatro creencias comunes. "Ser agnóstico es usar a todos los proveedores." No es así. Es poder cambiar, casi siempre mientras usas uno solo. "Un gateway nos vuelve agnósticos." Ayuda. Pero si tus prompts, herramientas, skills y pruebas están atados a un proveedor, sigues atado. "Cambiar es un proyecto de migración." Con configuración y evals, es un cambio de una línea, ya probado. Y "ser agnóstico es conformarse con el mínimo común denominador". No. Usa las mejores funciones de cada proveedor, pero llega a ellas por interfaces que son tuyas.
+
+[3:21] loop
+Esta es la idea central de la sesión: siete fundamentos, un ciclo. Un caso de uso entra por arriba y pasa por cada fundamento en orden. Primero, las herramientas MCP que lo conectan a tus datos. Luego, el contenedor donde corre. Luego, el escaneo, para que cada cambio se revise. Luego, las skills, el know-how que conservas. Luego, los paquetes de código aprobados. Luego, el marco de API, donde el modelo y el endpoint se fijan en la configuración. Y al final, las evals. Las evals vigilan dos tipos de deriva. La deriva del modelo, cuando una versión nueva responde distinto. Y la deriva del caso de uso, cuando el negocio, los datos o los usuarios cambian, pero el prompt sigue igual. Cuando aparece cualquiera de las dos, el arreglo es local. Cambia el modelo en la configuración, o actualiza una skill o un prompt. Todo lo demás se queda donde está.
+
+[4:16] seven
+Estas son las siete cosas que son tuyas, en una sola vista. Herramientas MCP aprobadas: tu conexión a los datos, que puede usar cualquier arnés que hable MCP. Contenedores: la autorización va con la imagen, no con el modelo. Escaneo: cada paquete, skill o modelo nuevo pasa las mismas revisiones. Skills: el know-how capturado una sola vez. Paquetes de código: flujos armados con piezas conocidas y fijadas. Una capa de API multiproveedor: cambiar de modelo es un cambio de configuración. Y evals guardadas: la forma de saber que un cambio funcionó. Ninguna de estas le pertenece a un proveedor de modelos. Donde no eres dueño de una, ahí se esconde la dependencia del proveedor.
+
+[5:02] config
+Vamos a profundizar en tres de ellas, empezando por la capa de API. Cambiar de modelo debe ser un cambio de una línea. Mira la figura. El archivo de configuración nombra el endpoint, la versión del modelo y el prompt. En la primera corrida, la solicitud pasa por el modelo A, el resultado regresa con los mismos campos y las evals pasan. Ahora cambia una línea. El modelo A se vuelve el modelo B. La segunda corrida pasa por el modelo B. El resultado tiene la misma forma. Y las evals vuelven a pasar. Cambia la configuración, no el código. Y siempre fija una versión con nombre, nunca "latest", para que el modelo no cambie sin que lo decidas.
+
+[5:44] skills
+Ahora, las skills. Escribe una skill una vez e instálala donde tengas autorización. Una skill es una carpeta de instrucciones, en un formato abierto que ya leen casi todos los arneses principales. Mira el recorrido. El paquete de la skill entra a tu registro interno, donde se revisa, se escanea y se fija a una versión. Luego se instala en el arnés A, el arnés B y el arnés C. En cada uno se prueba. El arnés C falla al principio, porque las rutas de archivos son distintas. Es normal. Corrígelo y vuelve a probar. Escribe una vez. Prueba en cada arnés.
+
+[6:21] evals
+Y la más importante: las evals. Las evals te dicen si un cambio funcionó. Una eval es un conjunto de prueba guardado para un prompt, una skill o un flujo de trabajo, que corre de forma programada y con cada cambio. Mira el puntaje a lo largo del tiempo. Cuando llega una versión nueva del modelo, el puntaje cae debajo del umbral. Esa es la deriva del modelo. El arreglo: fijar la versión y corregir en la configuración, y el puntaje se recupera. Después, los datos y los usuarios cambian, y el puntaje baja poco a poco. Esa es la deriva del caso de uso. El arreglo: actualizar la skill o el prompt. Sin evals, ser agnóstico es un deseo, no un hecho.
+
+[7:01] rule
+Esta es la idea que tienes que llevarte. Renta el modelo. Quédate con las conexiones. Quédate con el know-how. Y quédate con las pruebas. Las conexiones son tus herramientas MCP y tu capa de API. El know-how, tus skills y prompts. Y las pruebas, tus evals guardadas.
+
+[7:20] playbook
+Entonces, ¿qué pasa cuando llega un modelo nuevo? Pruebas antes de cambiar. Paso uno, llega un modelo nuevo. Paso dos, fija tu versión actual, para que nada cambie por accidente. Paso tres, corre tus evals guardadas con el modelo nuevo. Paso cuatro, compara los resultados. Si falla, sigue con la versión fijada y vuelve a intentar después. No se pierde nada. Si pasa, paso cinco: cambia en la configuración. Y paso seis, sigue monitoreando la deriva. La regla es sencilla. Sin evals, no hay cambio.
+
+[7:54] exercise
+Hora de practicar. Pausa el video para este ejercicio. Parte A. Elige un flujo de trabajo que tu equipo corra cada semana. Para cada uno de los siete fundamentos, marca si es propio de tu organización, si es de un proveedor o si falta. Parte B. Imagina que el modelo detrás de ese flujo se retira en treinta días. ¿Dónde se nombra el modelo, en la configuración o en el código? ¿Qué evals probarían que el nuevo funciona? ¿Qué prompts o skills podrían necesitar cambios? ¿Quién aprueba el cambio? ¿Y qué haría más fácil el siguiente? Cuando termines, nombra tu hueco más grande. Para la mayoría de los equipos, son las evals.
+
+[8:34] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. ¿Qué hace agnóstica a una organización? Pausa y responde. ¿Puedes nombrar cuatro de los siete fundamentos? Pausa y responde. ¿Por qué las evals guardadas importan tanto al cambiar? Pausa y responde. ¿Qué diferencia hay entre la deriva del modelo y la deriva del caso de uso? Pausa y responde. ¿Dónde deben vivir el nombre del modelo y el endpoint? Pausa y responde. ¿Y por qué probar una skill en cada arnés, si el formato es el mismo? Pausa y responde. Si alguna te cuesta trabajo, regresa a esa parte del video.
+
+[9:13] bridge
+Esto es lo que sigue. La prueba de hoy fue automática: evals guardadas que revisan un flujo cada vez que algo cambia. Pero la respuesta llega rápido y bien redactada. Entonces, ¿cómo sabes que es correcta cuando eres tú quien la lee? Esa es la Sesión tres: prompts seguros y verificación. La regla única para usar la IA con seguridad. Escribir prompts como si pusieras al tanto a alguien nuevo en el equipo. Las instrucciones guardadas. Y revisar fuentes, hechos y números antes de usar cualquier cosa. Gracias por ver. Nos vemos en la Sesión tres.

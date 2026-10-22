@@ -1,0 +1,46 @@
+Sesión 6 - Cómo construir flujos de trabajo — transcripción
+
+[0:00] cover
+Te damos la bienvenida a la Sesión seis de nuestra serie sobre cómo usar bien y con seguridad la IA generativa en el trabajo. En la Sesión cinco metimos una llamada al modelo dentro de un contenedor. El endpoint quedó en la configuración y la llave en un gestor de secretos. Hoy encadenamos esas llamadas. Hoy toca construir flujos de trabajo. Mira la figura: tres lunes, la misma tarea hecha a mano. El primer lunes, alguien edita el prompt. El segundo, alguien se salta un paso. El tercero, nadie revisa. Luego, un solo carril fijo corre los mismos pasos cada vez, con una revisión.
+
+[0:38] agenda
+Al terminar esta sesión, vas a poder hacer cuatro cosas. Distinguir un flujo de trabajo de un chatbot y de un agente. Elegir un buen primer flujo de trabajo. Encadenar prompts guardados en pasos fijos, con una revisión y una aprobación. Y ejecutarlo con seguridad, con un contenedor, registros y límites. Vamos a dedicar más tiempo a la anatomía de un flujo de trabajo, porque ese es el patrón que vas a copiar.
+
+[1:03] why
+¿Por qué importa esto? Porque siempre aparecen tres quejas. "Pegamos el mismo prompt cada lunes". Es una tarea repetida, hecha a mano, un poco distinta cada vez. "Se rompió y nadie se dio cuenta". Los flujos fallan en silencio cuando cambian las entradas, salvo que algo revise el resultado. Y "no nos aprueban agentes". La buena noticia: todavía no los necesitas. Entonces la pregunta es: ¿cómo convertimos una tarea repetida en una ruta fija y segura?
+
+[1:34] whodecides
+Empecemos con una pregunta: ¿quién elige cada paso? Mira el carril del chatbot. La persona elige cada paso: pregunta, lee la respuesta, vuelve a preguntar y copia el resultado. La persona decide en cada turno. Ahora el carril del flujo de trabajo. Toda la ruta se dibuja antes de ejecutarse. Luego cada ejecución la sigue al pie de la letra: trae las entradas, resume, revisa y envía. Quien lo diseña decidió por adelantado. Ahora el carril del agente. La IA planea, actúa y revisa, en un ciclo. Luego una persona revisa. Aquí, la IA decide al ejecutarse. En un flujo de trabajo, la ruta se fija antes de correr.
+
+[2:18] available
+Entonces, ¿hasta dónde puedes subir con lo que tienes hoy? Lee la escalera de abajo hacia arriba. Con solo chat, escribes prompts a mano y compartes plantillas. Con chat y una API, puedes construir flujos con scripts o low-code que llaman al modelo. Los servidores MCP, los conectores que vemos en la Sesión siete, funcionan como pasos fijos. Más arriba, la llamada a herramientas deja que el modelo consulte datos. Y un arnés completo, el software que rodea al modelo, agrega skills y agentes. Aquí es donde te detienes: con chat y una API basta. Eso ya es automatización que funciona, dentro de un contenedor.
+
+[2:58] pick
+¿Qué tarea debería ser tu primer flujo de trabajo? Califícala. Mira cómo la lista califica un reporte de estatus semanal. Se repite cada semana. Tiene la misma forma cada vez. Hay un resultado de referencia. Un líder ya lo revisa. Los datos están en un nivel de sensibilidad aprobado. Y puedes medir el tiempo que toma. Seis de seis: lista para construir. Califica tu propia tarea igual. Con cuatro de seis basta para empezar.
+
+[3:26] anatomy
+Ahora, la anatomía de un flujo de trabajo. Seis pasos fijos, con una revisión y una persona. Mira la figura. Un disparador inicia la ejecución, casi siempre un horario. Luego se traen las entradas, a través de un servidor MCP, como paso fijo. Después, el prompt guardado, versión dos, va a un modelo con versión fijada a través de la API. Luego el resultado se valida. Una persona responsable lo revisa. Y después se entrega. Cada paso escribe en el registro de auditoría. Ahora el registro se limpia y pasa una ejecución completa. Cada paso se ilumina y vuelve a escribir su línea. La ejecución espera en la revisión, porque una persona aprueba. Luego se entrega. El script decide cada paso, no el modelo.
+
+[4:14] validate
+El riesgo principal de un flujo de trabajo es que se rompe en silencio. La validación es la forma de escuchar cuando se rompe. Aquí está el borrador. Se lee bien. Ahora corren las revisiones. Revisión uno, formato: pasa. Revisión dos, campos obligatorios: pasa. Revisión tres, enlaces: falla. Hay un enlace que nadie esperaba. Revisión cuatro, destinatarios: pasa. Basta una falla. La ejecución se marca y se manda a una persona, y no se entrega nada. Lo malo se marca, nunca pasa.
+
+[4:49] saferun
+Luego, ejecútalo con seguridad. Sellado, registrado y con límites. Mira la figura. Es el mismo contenedor que armamos en la Sesión cinco. El flujo corre adentro. La llave se inyecta en tiempo de ejecución, desde el gestor de secretos. La llamada al endpoint del modelo está en la lista de permitidos. La llamada al servidor MCP también. Pero una llamada a cualquier otro lugar se bloquea en la pared. Cada ejecución queda registrada. Y un límite de costo detiene la ejecución antes de que un ciclo dispare la factura.
+
+[5:22] release
+Así corre. Ahora, ¿qué pasa antes de que un cambio entre en operación? Pruébalo y luego dale versión. Mira la figura. La versión tres del prompt es un borrador. Corre el conjunto de prueba. Cinco casos de referencia, y cada uno pasa. Luego el caso difícil: un reporte que dice "ignora tus reglas". El prompt aguanta. Solo entonces la liberación versión tres llega a la biblioteca del equipo, y el registro la anota. Una nueva versión es una nueva liberación, nunca una edición directa.
+
+[5:55] measure
+¿Cómo demuestras que funciona? Con cuatro números. El tiempo ahorrado por ejecución. Los errores detectados en la revisión. Los flujos que corren en producción. Y cuántos otros equipos reutilizan tus prompts. Primero mide el tiempo de la tarea a mano, para tener una línea base.
+
+[6:11] rule
+Esta es la idea que tienes que llevarte. Fija la ruta. Revisa cada resultado. Una persona aprueba antes de entregar. El script decide cada paso, la revisión detecta lo que está mal y nada se entrega sin aprobación.
+
+[6:27] exercise
+Hora de practicar. Pausa el video para este ejercicio. Parte A. Diséñalo. Elige una tarea semanal y llena una tarjeta de flujo de trabajo: el disparador, las entradas, los pasos como prompts guardados, la revisión, y quién revisa y cómo se entrega. La tarjeta del reporte de estatus en la diapositiva es tu ejemplo. Parte B. Rómpelo. Corre seis escenarios contra tu diseño. Cambió la plantilla de entrada. Falta un reporte. El resultado trae un enlace desconocido. Se actualizó la versión del modelo. Un reporte dice "ignora tus reglas". Y la ejecución entra en ciclo y sigue llamando. En cada uno, ¿tu flujo lo marca o lo deja pasar? Lo que pasaría en silencio es una revisión que falta.
+
+[7:12] check
+Antes de terminar, intenta responder estas seis preguntas con tus propias palabras. ¿Quién decide los pasos en un flujo de trabajo? Pausa y responde. ¿Qué puede construir un equipo solo con chat y una API? Pausa y responde. ¿Puedes nombrar tres señales de un buen primer flujo de trabajo? Pausa y responde. ¿Qué pasa cuando falla una revisión de validación? Pausa y responde. ¿Dónde deben vivir los prompts de un flujo de trabajo? Pausa y responde. Y si un reporte en las entradas dice "ignora tus reglas", ¿qué dos partes del flujo impiden que eso se entregue? Pausa y responde. Si alguna te costó trabajo, regresa a esa parte del video.
+
+[7:55] bridge
+Esto es lo que sigue. Hoy, el script decidió cada paso. Pero ¿qué pasa cuando el modelo pide el paso por su cuenta? Eso es la Sesión siete: herramientas, MCP e inyección de prompts. El modelo pide una herramienta. El arnés revisa la solicitud y ejecuta las aprobadas. Y todo lo que regresa es contenido no confiable. Gracias por ver. Nos vemos en la Sesión siete.
