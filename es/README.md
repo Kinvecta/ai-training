@@ -2,7 +2,7 @@
 
 **Usa bien y con seguridad la IA generativa en el trabajo.** Ocho sesiones y dos inmersiones técnicas, unas 2 horas de video, con diapositivas en PDF, transcripciones y una guía maestra. Cada video también es un módulo de 90 minutos para dar en aula (120 minutos las inmersiones técnicas).
 
-[![Lista de YouTube](https://img.shields.io/badge/YouTube-lista%20en%20espa%C3%B1ol-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLPYZqM8a_06M) [![Guía maestra](https://img.shields.io/badge/leer-gu%C3%ADa%20maestra%20%28PDF%29-8A2BE2)](guia-maestra.pdf) [![English](https://img.shields.io/badge/read-in%20English-blue)](../README.md)
+[![Lista de YouTube](https://img.shields.io/badge/YouTube-lista%20en%20espa%C3%B1ol-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLPYZqM8a_06M) [![Guía maestra](https://img.shields.io/badge/leer-gu%C3%ADa%20maestra%20%28PDF%29-8A2BE2)](guia-maestra.pdf) [![Guía rápida](https://img.shields.io/badge/gu%C3%ADa%20r%C3%A1pida-10%20reglas%20de%20oro%20%28PDF%29-8FB4E8)](guia-rapida.pdf) [![English](https://img.shields.io/badge/read-in%20English-blue)](../README.md)
 
 > [!WARNING]
 > **Sin mantenimiento activo.** Este repositorio acompaña una serie grabada en 2026 y se publica tal cual. Las herramientas, los protocolos y las buenas prácticas de IA cambian rápido, y las dependencias del código pueden quedar desactualizadas o con vulnerabilidades conocidas. Revisa, actualiza y escanea todo lo que reutilices.

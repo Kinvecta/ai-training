@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="#video-tutorials">videos</a> | <a href="#course">course</a> | <a href="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/">MCP lab</a> | <a href="master-guide.pdf">master guide</a> | <a href="es/">en español</a>
+  <a href="#video-tutorials">videos</a> | <a href="#course">course</a> | <a href="#how-it-works">how it works</a> | <a href="#the-ten-rules-of-thumb">cheat sheet</a> | <a href="#run-the-mcp-lab">MCP lab</a> | <a href="#teach-it">teach it</a> | <a href="es/">en español</a>
 </p>
 
 <br>
@@ -13,12 +13,16 @@
   <a href="https://github.com/Kinvecta/ai-training/actions/workflows/security.yml"><img alt="Security" src="https://github.com/Kinvecta/ai-training/actions/workflows/security.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="license MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
   <a href="LICENSE-CONTENT.md"><img alt="content CC BY 4.0" src="https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey"></a>
+  <img alt="python 3.10 | 3.11 | 3.12 | 3.13" src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue">
+  <img alt="node 20 | 22" src="https://img.shields.io/badge/node-20%20%7C%2022-339933?logo=node.js&logoColor=white">
 </p>
 
 <p align="center">
-  <a href="https://www.youtube.com/playlist?list=PLQqgikRVyDAM"><img alt="YouTube playlist" src="https://img.shields.io/badge/YouTube-playlist-red?logo=youtube&logoColor=white"></a>
+  <a href="https://www.youtube.com/playlist?list=PLQqgikRVyDAM"><img alt="YouTube playlist" src="https://img.shields.io/badge/YouTube-10%20videos-red?logo=youtube&logoColor=white"></a>
   <a href="https://www.youtube.com/playlist?list=PLPYZqM8a_06M"><img alt="YouTube playlist in Spanish" src="https://img.shields.io/badge/YouTube-en%20espa%C3%B1ol-red?logo=youtube&logoColor=white"></a>
-  <a href="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/"><img alt="MCP lab in Python and TypeScript" src="https://img.shields.io/badge/MCP%20lab-Python%20%7C%20TypeScript-yellow"></a>
+  <a href="#run-the-mcp-lab"><img alt="MCP lab in Python and TypeScript" src="https://img.shields.io/badge/MCP%20lab-Python%20%7C%20TypeScript-FFC400"></a>
+  <a href="docs/kinvecta-ai-training-cheat-sheet.pdf"><img alt="Cheat sheet PDF" src="https://img.shields.io/badge/cheat%20sheet-PDF-8FB4E8"></a>
+  <a href="https://github.com/Kinvecta/the-memory-layer"><img alt="See also: The Memory Layer" src="https://img.shields.io/badge/see%20also-The%20Memory%20Layer-0A1A2F"></a>
   <a href="https://github.com/Kinvecta/ai-training/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Kinvecta/ai-training?style=social"></a>
 </p>
 
@@ -31,11 +35,15 @@
 - [hello](#hello)
 - [start here](#start-here)
 - [course](#course)
-- [how the series fits together](#how-the-series-fits-together)
+- [how it works](#how-it-works)
+  - [five stages of AI use](#five-stages-of-ai-use)
+- [the ten rules of thumb](#the-ten-rules-of-thumb)
 - [video tutorials](#video-tutorials)
 - [run the MCP lab](#run-the-mcp-lab)
 - [teach it](#teach-it)
 - [FAQ](#faq)
+- [built with this course](#built-with-this-course)
+- [more from Kinvecta](#more-from-kinvecta)
 - [what's inside](#whats-inside)
 - [contributing](#contributing)
 - [star history](#star-history)
@@ -46,17 +54,29 @@
 
 ## hello
 
-**Use generative AI well and safely at work.**
+<table>
+<tr>
+<td width="44%" valign="top">
 
-Kinvecta AI Training is a free course for teams adopting generative AI. It is vendor-neutral and security-minded, and it goes from "what is an LLM?" to agents, skills and a DevSecOps pipeline, one stage at a time.
+**Same model. Different harness. Different risk.**
 
-- **Eight core sessions** (6 to 11 minutes each) for everyone who uses AI at work, then for the people who automate with it
-- **Two technical deep dives** (about 20 minutes each) for builders: an MCP server from scratch, and containers, scanning and CI/CD
-- **Slides (PDF) and transcripts** for every video, plus a **master guide** with key points and check questions
-- **A working MCP lab** in Python and TypeScript, with tests that run in CI
+Kinvecta AI Training is a free, vendor-neutral course for teams adopting generative AI. It starts with "what is an LLM?" and builds, one stage at a time, to agents, skills and a DevSecOps pipeline, with security in every step.
+
+- **Eight short sessions** (6 to 11 minutes) for everyone who uses AI at work, then for the people who automate with it
+- **Two technical deep dives** (about 20 minutes) for builders: an MCP server from scratch, and containers, scanning and CI/CD
+- **Slides (PDF), transcripts and self-study exercises** for every video, plus a **master guide** with check questions
+- **A working MCP lab** in Python and TypeScript, tested in CI
 - **The whole series in Spanish too** (es-MX), in [`es/`](es/)
 
-Every session ends with one rule of thumb. Together they are the course in ten lines.
+Every session ends with one rule of thumb. Together they are [the course in ten lines](#the-ten-rules-of-thumb).
+
+</td>
+<td width="56%" valign="top">
+<img src="docs/assets/same-model-different-harness.gif" width="100%" alt="Animation: one model with one set of weights inside three harnesses (a chat app, a coding agent and your own script), each with different reach and a different level of acting alone">
+<br><sub><i>One model, three harnesses: the harness decides what it can see and do (from Session 1).</i></sub>
+</td>
+</tr>
+</table>
 
 ## start here
 
@@ -68,25 +88,25 @@ Every session ends with one rule of thumb. Together they are the course in ten l
 
 Ten short videos. Sessions 1–4 are for everyone, 5–8 for people automating work with AI, and the deep dives for builders.
 
-[Open the playlist](https://www.youtube.com/playlist?list=PLQqgikRVyDAM) · [video list](#video-tutorials)
+[Open the playlist](https://www.youtube.com/playlist?list=PLQqgikRVyDAM) · [video list](#video-tutorials) · [learning paths](docs/learning-paths.md)
 
 </td>
 <td width="33%" valign="top">
 
 **Build** (about 15 minutes)
 
-Clone the repo and run the ticket-desk MCP server and its tests, in Python or TypeScript.
+Clone the repo, run the ticket-desk MCP server and its tests in Python or TypeScript, then try the guided exercises.
 
-[Run the MCP lab](#run-the-mcp-lab)
+[Run the MCP lab](#run-the-mcp-lab) · [exercises](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/exercises.md) · [DevSecOps lab](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/lab/)
 
 </td>
 <td width="33%" valign="top">
 
 **Teach or self-study**
 
-Each video is also a 90-minute classroom module. Use the slides, transcripts and the master guide's check questions.
+Each video is also a 90-minute classroom module. Every session page has key ideas, key terms, a "try it" exercise and check questions.
 
-[Course](#course) · [master guide (PDF)](master-guide.pdf) · [syllabus](course/) · [learning paths](docs/learning-paths.md) · [glossary](docs/glossary.md)
+[Teach it](#teach-it) · [master guide (PDF)](master-guide.pdf) · [cheat sheet (PDF)](docs/kinvecta-ai-training-cheat-sheet.pdf) · [glossary](docs/glossary.md)
 
 </td>
 </tr>
@@ -94,7 +114,7 @@ Each video is also a 90-minute classroom module. Use the slides, transcripts and
 
 ## course
 
-All ten videos are out, in English and Spanish. Each one has slides as a PDF and a transcript. Deep Dive A adds a hands-on lab, and Deep Dive B a research brief with sources.
+All ten videos are out, in English and Spanish. Each session folder has the slides as a PDF, the transcript, key ideas and terms, a self-study exercise, check questions with answers, and further reading. Deep Dive A adds a hands-on MCP lab, and Deep Dive B a DevSecOps lab and a research brief with sources.
 
 | **#** | **session** | **watch / lab** | **materials** | **español** |
 |:--:|---|---|---|---|
@@ -109,11 +129,73 @@ All ten videos are out, in English and Spanish. Each one has slides as a PDF and
 | **A** | **[Deep dive A: build an MCP server from scratch](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/)**<br><sub>Builders · 20:30</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/UQZCd-izZZI) [![Lab](https://img.shields.io/badge/open-lab-orange)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/transcript/Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Inmersi%C3%B3n%20t%C3%A9cnica%20A%20-%20Construye%20un%20servidor%20MCP%20desde%20cero/) |
 | **B** | **[Deep dive B: DevSecOps: containers, scanning and CI/CD](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/)**<br><sub>Builders and reviewers · 19:41</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/zGLWpj00n3U) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/slides.pdf) [![Research brief](https://img.shields.io/badge/read-brief-blue)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/research-brief.md) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/transcript/Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Inmersi%C3%B3n%20t%C3%A9cnica%20B%20-%20DevSecOps%2C%20contenedores%2C%20escaneo%20y%20el%20pipeline%20de%20CI-CD/) |
 
-Not sure where to start? See the [learning paths](docs/learning-paths.md) for everyone, automators, builders, program leads and trainers, and the [glossary](docs/glossary.md) for every term the course uses. The [syllabus](course/) lists every rule of thumb and what you can do by the end.
+Not sure where to start? The [learning paths](docs/learning-paths.md) cover everyone, automators, builders, program leads and trainers. The [glossary](docs/glossary.md) defines every term the course uses, and the [syllabus](course/) lists what you can do by the end.
 
-## how the series fits together
+## how it works
 
-The series follows five stages of AI use. Each stage adds one capability and one new risk, and everyone starts at Stage 1.
+The course is built around one idea: **the model is rented, and the harness around it decides what it can see and do.** Everything else follows from that: which data goes where, how you switch vendors without rebuilding, when a workflow beats an agent, and where the security controls sit.
+
+<table>
+<tr>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/chatbot-workflow-agent.gif" width="100%" alt="Animation: a chatbot where the person picks each step, a workflow where a designer fixes the steps in advance, and an agent where the AI picks steps at run time">
+<br><b>Who picks each step?</b><br><sub>Chatbot, workflow or agent. Use a workflow when the steps are known. <a href="Session%201%20-%20What%20an%20LLM%20Is/">Session 1</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/one-line-model-switch.gif" width="100%" alt="Animation: a config file changes one line, the model version, and the same workflow, endpoint, output and evals run against the new model">
+<br><b>Switch in one line</b><br><sub>Endpoint in config, pinned model, stored evals: a model swap is a config change. <a href="Session%202%20-%20AI%20Resilience/">Session 2</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/six-finders.gif" width="100%" alt="Animation: six ways AI fetches data appear one by one: everything in context, semantic search, keyword search, agentic search, structured queries and multimodal, with a note that an index is a copy of your data">
+<br><b>Six ways AI finds your data</b><br><sub>No single finder covers every kind of data, and every index is a copy. <a href="Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/">Session 4</a></sub>
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/workflow-anatomy.gif" width="100%" alt="Animation: a six-step workflow (trigger, pull inputs, saved prompt, validate, human review, deliver) runs while an audit log fills in">
+<br><b>Six fixed steps</b><br><sub>A saved prompt, a check on every output, and a person before anything ships. <a href="Session%206%20-%20Building%20Workflows/">Session 6</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/prompt-injection.gif" width="100%" alt="Animation: a prompt injection attack needs private data, untrusted content and a way out; removing the way out stops the attack">
+<br><b>Remove one ingredient</b><br><sub>Prompt injection needs private data, untrusted content and a way out. <a href="Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/">Session 7</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/five-stages.gif" width="100%" alt="Animation: five stages of AI use stack up, from chat and saved prompts to agents and skills, each with its new risk and where each role stops">
+<br><b>Five stages, one new risk each</b><br><sub>Everyone starts at Stage 1; each role knows where it stops. <a href="Session%208%20-%20Agents%2C%20Skills%20and%20Running%20the%20Program/">Session 8</a></sub>
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/mcp-trust-boundaries.gif" width="100%" alt="Animation: one MCP request crosses four layers (person, host, MCP server, backend API) and three trust boundaries, and each layer enforces its own rules">
+<br><b>Four layers, three trust boundaries</b><br><sub>Build an MCP server where every layer enforces its own rules. <a href="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/">Deep Dive A</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<img src="docs/assets/pipeline-gates.gif" width="100%" alt="Animation: a CI/CD assembly line with inspection stations (review, build, tests and evals, scan, sign, push, deploy, promote, runtime) where one fixable critical finding stops the build">
+<br><b>An assembly line with inspection stations</b><br><sub>One build, every gate, the same digest to production. <a href="Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/">Deep Dive B</a></sub>
+</td>
+<td width="33%" valign="top" align="center">
+<a href="docs/kinvecta-ai-training-cheat-sheet.pdf"><img src="docs/assets/cheat-sheet.png" width="100%" alt="Cheat sheet: the ten rules of thumb from Kinvecta AI Training"></a>
+<br><b>The course in ten lines</b><br><sub>One rule of thumb per video, on one page. <a href="docs/kinvecta-ai-training-cheat-sheet.pdf">PDF</a> · <a href="es/guia-rapida.pdf">español</a></sub>
+</td>
+</tr>
+</table>
+
+### five stages of AI use
+
+Each stage adds one capability and one new risk. Everyone starts at Stage 1, and most teams get a long way with Stages 1 to 3 before they need agents.
+
+```mermaid
+flowchart LR
+    S1["<b>1 · Safe everyday use</b><br/>right tool for the data<br/>a person signs"] --> S2["<b>2 · API in a container</b><br/>endpoint in config<br/>one way out"]
+    S2 --> S3["<b>3 · Fixed workflows</b><br/>same steps every run<br/>approval before it ships"]
+    S3 --> S4["<b>4 · Tool calling</b><br/>read tools run, actions wait<br/>everything returned is data"]
+    S4 --> S5["<b>5 · Agents and skills</b><br/>guardrails, shared library<br/>measured results"]
+    style S1 fill:#2A2A1E,stroke:#FFC400,color:#FFC400
+    style S2 fill:#0F2440,stroke:#8FB4E8,color:#FFFFFF
+    style S3 fill:#0F2440,stroke:#8FB4E8,color:#FFFFFF
+    style S4 fill:#0F2440,stroke:#8FB4E8,color:#FFFFFF
+    style S5 fill:#2E1C22,stroke:#FF4D3D,color:#FFFFFF
+```
 
 | Stage | What you do | New risk | Sessions |
 |:--:|---|---|---|
@@ -123,9 +205,36 @@ The series follows five stages of AI use. Each stage adds one capability and one
 | **4** | Tool calling: the model can look things up and act, through MCP or native tools | Prompt injection; actions without a gate | [7](Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/), [A](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/) |
 | **5** | Agents and skills: packaged know-how, agents with guardrails, a shared library, measured results | Autonomy without limits or evidence | [8](Session%208%20-%20Agents%2C%20Skills%20and%20Running%20the%20Program/) |
 
+## the ten rules of thumb
+
+Print it, pin it, or put it on the last slide of your own session. One rule per video.
+
+<p align="center">
+  <a href="docs/kinvecta-ai-training-cheat-sheet.pdf"><img src="docs/assets/cheat-sheet.png" width="100%" alt="Cheat sheet: ten rules of thumb for using generative AI at work, one per session, from Session 1 to Deep Dive B"></a>
+  <br><sub><a href="docs/kinvecta-ai-training-cheat-sheet.pdf">Download the PDF</a> · <a href="es/guia-rapida.pdf">Guía rápida en español (PDF)</a></sub>
+</p>
+
+<details>
+<summary><b>The rules as text</b></summary>
+
+| # | Session | Rule of thumb |
+|:--:|---|---|
+| 1 | What an LLM is | The model thinks. Skills teach it how. Tools let it act. The harness decides which of those it gets. |
+| 2 | AI resilience | Rent the model. Own the connections. Own the know-how. Own the proof. |
+| 3 | Safe prompting and verification | Right tool for the data. Brief it like a teammate. Check every claim. A person signs. |
+| 4 | Tokens, context and finders | Send less. Cache what's stable. Fetch with the finder that fits. |
+| 5 | APIs, endpoints and containers | Call it from code. Keep the endpoint in config. Seal it in a container. |
+| 6 | Building workflows | Fix the path. Check every output. A person approves before it ships. |
+| 7 | Tools, MCP and prompt injection | Read tools run freely, from approved sources. Action tools wait for a person. Everything returned is data. |
+| 8 | Agents, skills and the program | Write it once, as a skill. Gate what leaves. Measure what changes. |
+| A | Build an MCP server | Few tools, tight schemas. A person confirms every action. Validate your own token. Never pass it on. |
+| B | DevSecOps: containers and CI/CD | Pin everything. Scan before it ships. Sign it, and ship the same digest. |
+
+</details>
+
 ## video tutorials
 
-Watch the sessions in order in the [YouTube playlist](https://www.youtube.com/playlist?list=PLQqgikRVyDAM), or jump to any one.
+Watch the sessions in order in the [YouTube playlist](https://www.youtube.com/playlist?list=PLQqgikRVyDAM), or jump to any one. The same ten videos are in Spanish in the [lista en español](https://www.youtube.com/playlist?list=PLPYZqM8a_06M).
 
 <table>
 <tr>
@@ -222,7 +331,7 @@ Watch the sessions in order in the [YouTube playlist](https://www.youtube.com/pl
 
 ## run the MCP lab
 
-Deep Dive A builds **ticket-desk**, a small MCP server with a read-only tool, an action that asks a person to confirm before it runs, a resource and a prompt, on the current spec and the version 2 SDKs.
+Deep Dive A builds **ticket-desk**, a small help-desk MCP server, on the current spec and the version 2 SDKs. It has a read-only tool with a tight schema, an action that asks a person to confirm before it runs, a resource and a prompt.
 
 **Python** (3.10+):
 
@@ -232,26 +341,40 @@ cd "ai-training/Deep Dive A - Build an MCP Server from Scratch/lab"
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt -r requirements-dev.txt
 python -m pytest -q
+# ......                                                    [100%]
+# 6 passed
 ```
 
-**TypeScript** (Node 20+):
+**TypeScript** (Node 20+), an end-to-end run through an in-memory client:
 
 ```bash
 cd "ai-training/Deep Dive A - Build an MCP Server from Scratch/lab/ts"
-npm ci
-npm test
+npm ci && npm test
+# (output trimmed)
+# get_ticket TCK-1001 -> { id: 'TCK-1001', title: 'VPN drops every 30 min', status: 'open', priority: 'high' }
+# true Input validation error: ... ticket_id: Invalid string: must match pattern /^TCK-\d{4}$/
+# ELICIT: Close ticket TCK-1002? This notifies the requester.
+# TCK-1002 NOT closed (user chose decline).
+# ELICIT: Close ticket TCK-1002? This notifies the requester.
+# TCK-1002 closed.
 ```
 
-The [lab README](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/) shows how to run the server over stdio or Streamable HTTP and connect it to an AI app.
+The bad ID never reaches your code: the schema rejects it. And the ticket only closes after the person says yes; the model can't confirm on their behalf.
+
+| Next step | Where |
+|---|---|
+| Run it over stdio or Streamable HTTP, connect it to an AI app, inspect it | [lab README](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/) |
+| Extend it safely: a search tool, a decline path, a tool-list snapshot test | [six guided exercises](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/exercises.md) |
+| Box it: a hardened Dockerfile, scan and triage, an example pipeline | [Deep Dive B lab](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/lab/) |
 
 ## teach it
 
 The series was built as a train-the-trainer course. To run a session with your team:
 
 1. Watch the video and read its transcript.
-2. Present from the session's `slides.pdf`.
-3. Use the [master guide](master-guide.pdf) for each session's key points, chapters and six check questions with model answers.
-4. Close with the session's rule of thumb, and bridge to the next session.
+2. Present from the session's `slides.pdf`, pausing at the exercise.
+3. Use the session page's **try it** exercise and **check your understanding** questions (answers included), or the [master guide](master-guide.pdf) for every session at once.
+4. Close with the session's rule of thumb from the [cheat sheet](docs/kinvecta-ai-training-cheat-sheet.pdf), and bridge to the next session.
 
 Sessions 1–4 need no technical background. Sessions 5–8 assume people who will automate work. The deep dives assume developers or platform engineers. The [learning paths](docs/learning-paths.md) give a suggested 90-minute slot structure and the time each track takes, and the [glossary](docs/glossary.md) is a handout-ready list of every term.
 
@@ -270,6 +393,12 @@ Not for Sessions 1–8. Session 5 explains APIs and containers without code. The
 </details>
 
 <details>
+<summary><b>How long does it take?</b></summary>
+
+The ten videos run about 1 h 42 min in English (about 2 hours in Spanish). Each session page's "try it" exercise takes another 15 to 20 minutes. As classroom modules, the sessions run 90 minutes each and the deep dives 120 minutes. See the [learning paths](docs/learning-paths.md) for each track.
+</details>
+
+<details>
 <summary><b>Can I use it to train my team?</b></summary>
 
 Yes. The course content is CC BY 4.0, so you can present, adapt and share it with attribution. The code is MIT. Follow your organization's rules on which data may go into which AI tool.
@@ -278,25 +407,38 @@ Yes. The course content is CC BY 4.0, so you can present, adapt and share it wit
 <details>
 <summary><b>Is there a Spanish version?</b></summary>
 
-Yes, all ten videos, slides, transcripts and the master guide, in Mexican Spanish: see [`es/`](es/) and the [Spanish playlist](https://www.youtube.com/playlist?list=PLPYZqM8a_06M).
+Yes, all ten videos, slides, transcripts, the session pages and the master guide, in Mexican Spanish: see [`es/`](es/) and the [Spanish playlist](https://www.youtube.com/playlist?list=PLPYZqM8a_06M).
 </details>
 
 <details>
 <summary><b>Where are the facilitator guides?</b></summary>
 
-Not in this repository. The slides, transcripts and the master guide (with check questions and answers) are enough to run each session. For trainer materials or a live session, contact [Kinvecta](https://kinvecta.ai).
+Not in this repository. The slides, transcripts, session pages and the master guide (with check questions and answers) are enough to run each session. For trainer materials or a live session, contact [Kinvecta](https://kinvecta.ai).
 </details>
+
+## built with this course
+
+Used the course with your team, or built something from the lab? Share it in [Discussions → Show and tell](https://github.com/Kinvecta/ai-training/discussions/categories/show-and-tell): which sessions you ran, who was in the room, and one thing that changed in how your team works.
+
+Please don't post secrets, internal documents or anyone's personal data. The repository isn't actively maintained, so posts are read on a best-effort basis.
+
+## more from Kinvecta
+
+| Repository | What it is |
+|---|---|
+| [**The Memory Layer**](https://github.com/Kinvecta/the-memory-layer) | Build an AI "second brain": linked markdown any AI tool can read, search, cite and keep current, with hybrid search, an MCP server and six videos. |
+| [**Agent Skills**](https://github.com/Kinvecta/agent-skills) | Worked examples of skills in the open Agent Skills format, with evals, a validator and install checks. The hands-on companion to Session 8. |
 
 ## what's inside
 
 | Folder | What it is |
 |---|---|
-| `Session 1` – `Session 8` | Each session's slides (PDF), transcript and thumbnail |
-| [`Deep Dive A`](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/) | Slides, transcript and the [`lab/`](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/): the ticket-desk MCP server in Python and TypeScript, with tests |
-| [`Deep Dive B`](Deep%20Dive%20B%20-%20DevSecOps%20Containers,%20Scanning%20and%20CI-CD/) | Slides, transcript and the [research brief](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/research-brief.md) with sources |
-| [`es/`](es/) | The whole series in Spanish (es-MX) |
+| `Session 1` – `Session 8` | Each session's slides (PDF), transcript, thumbnail and a session page with key ideas, terms, a self-study exercise, check questions and further reading |
+| [`Deep Dive A`](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/) | Slides, transcript and the [`lab/`](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/): the ticket-desk MCP server in Python and TypeScript, with tests, a starter and guided exercises |
+| [`Deep Dive B`](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/) | Slides, transcript, the [`lab/`](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/lab/) (hardened Dockerfile, scan and triage walkthrough, example pipeline) and the [research brief](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/research-brief.md) with sources |
+| [`es/`](es/) | The whole series in Spanish (es-MX), with its own [guía rápida](es/guia-rapida.pdf) |
 | [`course/`](course/) | Syllabus: sessions, audiences, rules of thumb and outcomes |
-| [`docs/`](docs/) | [Glossary](docs/glossary.md), [learning paths](docs/learning-paths.md) and the README's images |
+| [`docs/`](docs/) | [Glossary](docs/glossary.md), [learning paths](docs/learning-paths.md), the [cheat sheet](docs/kinvecta-ai-training-cheat-sheet.pdf) and the README's images |
 | [`master-guide.pdf`](master-guide.pdf) | Key points, chapters and check questions with answers for every session |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), [`CITATION.cff`](CITATION.cff) | How to report an error, how to report a vulnerability, how to cite the course |
 
@@ -326,12 +468,12 @@ Automated checks run on GitHub Actions: lab tests in Python and TypeScript, a se
 
 ## en español
 
-Toda la serie está disponible en español de México: diez videos, diapositivas, transcripciones y la guía maestra. Empieza en [`es/`](es/) o en la [lista de YouTube en español](https://www.youtube.com/playlist?list=PLPYZqM8a_06M).
+Toda la serie está disponible en español de México: diez videos, diapositivas, transcripciones, páginas de cada sesión con ejercicios, la guía maestra y una [guía rápida](es/guia-rapida.pdf) con las diez reglas de oro. Empieza en [`es/`](es/) o en la [lista de YouTube en español](https://www.youtube.com/playlist?list=PLPYZqM8a_06M).
 
 ## license
 
-- **Code** (the Deep Dive A lab): [MIT](LICENSE)
-- **Course content** (slides, transcripts, master guides, research brief): [CC BY 4.0](LICENSE-CONTENT.md)
+- **Code** (the Deep Dive A lab and the Deep Dive B lab examples): [MIT](LICENSE)
+- **Course content** (slides, transcripts, session pages, master guides, cheat sheets, research brief): [CC BY 4.0](LICENSE-CONTENT.md)
 
 © 2026 Mark D. Espinoza / Kinvecta.
 
