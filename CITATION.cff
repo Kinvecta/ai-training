@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use or adapt this course, please cite it as below."
+type: dataset
+title: "Kinvecta AI Training: Using Generative AI Well and Safely at Work"
+abstract: "A free, vendor-neutral course on using generative AI well and safely at work: eight core sessions and two technical deep dives, with slides, transcripts, a master guide and a hands-on MCP lab, in English and Spanish."
+authors:
+  - family-names: Espinoza
+    given-names: Mark D.
+    affiliation: Kinvecta
+version: "1.0"
+date-released: 2026-10-21
+license: CC-BY-4.0
+repository-code: "https://github.com/Kinvecta/ai-training"
+url: "https://kinvecta.ai"
+keywords:
+  - generative AI
+  - AI training
+  - AI safety
+  - prompt injection
+  - Model Context Protocol
+  - DevSecOps

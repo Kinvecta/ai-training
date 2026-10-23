@@ -1,0 +1,58 @@
+name: Content error report
+description: Something in a slide, transcript, README or the master guide is wrong or out of date.
+title: "[Content] "
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. This repository is not actively maintained, so reports are read on a best-effort basis. Please do not include secrets, internal documents or anyone's personal data. For security problems, use private vulnerability reporting instead (see SECURITY.md).
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where is it?
+      options:
+        - Session 1
+        - Session 2
+        - Session 3
+        - Session 4
+        - Session 5
+        - Session 6
+        - Session 7
+        - Session 8
+        - Deep Dive A
+        - Deep Dive B
+        - Master guide
+        - Spanish edition (es/)
+        - Root README or docs/
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: File and place
+      description: File name plus slide number, timestamp or line, so it can be found quickly.
+      placeholder: "e.g. Session 4 slides.pdf, slide 7; or transcript at 3:46"
+    validations:
+      required: true
+  - type: textarea
+    id: says
+    attributes:
+      label: What it says
+    validations:
+      required: true
+  - type: textarea
+    id: should
+    attributes:
+      label: What it should say, and why
+      description: A source (documentation, specification, paper) helps.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Checks
+      options:
+        - label: This report contains no secrets, personal data or internal documents.
+          required: true

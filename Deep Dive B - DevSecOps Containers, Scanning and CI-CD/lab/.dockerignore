@@ -1,0 +1,37 @@
+# Keep these out of the build context, so they can never end up in a layer.
+# Secrets and local config
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.aws/
+.ssh/
+# Version control and editor state
+.git
+.gitignore
+.github
+.vscode
+.idea
+.DS_Store
+# Local environments, caches and test output
+.venv
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+ts/
+*.log
+# Things the runtime does not need
+test_*.py
+starter.py
+exercises.md
+README.md
+Dockerfile*
+.dockerignore

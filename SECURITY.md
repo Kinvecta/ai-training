@@ -6,7 +6,7 @@ This repository is course material for the **Kinvecta AI Training** series. It i
 
 ## Reporting a vulnerability
 
-Please do not open a public issue. Use GitHub's private reporting instead: go to the **Security** tab and choose **Report a vulnerability**. Reports are read on a best-effort basis, with no response or fix timeline.
+Please do not open a public issue. Use GitHub's private reporting instead: go to the **Security** tab and choose **Report a vulnerability**, or open [a private report](https://github.com/Kinvecta/ai-training/security/advisories/new) directly. Reports are read on a best-effort basis, with no response or fix timeline. Content errors that are not security problems go through the [content error report](https://github.com/Kinvecta/ai-training/issues/new/choose) instead.
 
 ## What the repository does to lower risk
 

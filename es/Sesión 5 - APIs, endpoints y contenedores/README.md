@@ -6,7 +6,7 @@
 
 **Duración:** 7:43 · **Para:** Quienes automatizan · **Versión en aula:** 90 minutos
 
-Cuando tu propio software llama a un modelo de IA, no hay app de chat de por medio: los controles son de tu equipo. La Sesión 5 de la Capacitación en IA de Kinvecta explica qué cambia cuando el código llama al modelo, de dónde viene la API y cómo un contenedor lo mantiene seguro. No necesitas programar.
+Cuando tu propio software llama a un modelo de IA, no hay app de chat de por medio: los controles son de tu equipo. La Sesión 5 de la Capacitación en IA de Kinvecta explica qué cambia cuando el código llama al modelo por la API (la puerta por la que tu software llama al modelo), de dónde viene esa API y cómo un contenedor lo mantiene seguro. No necesitas programar.
 
 ## Vas a aprender
 
@@ -20,6 +20,66 @@ Cuando tu propio software llama a un modelo de IA, no hay app de chat de por med
 ## La regla de oro
 
 > **Llámalo desde tu código. Deja el endpoint en la configuración. Séllalo en un contenedor.**
+
+Tu código se vuelve el arnés (en inglés, harness), así que los controles son de tu equipo.
+
+## Ideas clave
+
+- Cuando tu código llama al modelo por la API, tu software se vuelve el arnés. Los seis trabajos que hacía la app de chat ahora le tocan a tu equipo: instrucciones, manejo de datos, registro, llaves y red, revisión y límites de costo.
+- Hay tres puertas de entrada al mismo modelo: la API del propio proveedor, la versión alojada en un proveedor de nube y la plataforma aprobada de tu organización. El modelo es el mismo; cambian los términos, la retención de datos y la aprobación.
+- Elige primero la puerta, por sus términos y aprobaciones, y luego el modelo.
+- Cuatro hábitos hacen que cambiar sea cosa de una línea: el endpoint en la configuración, la versión del modelo fijada, una sola forma de solicitud y una lista de permitidos con ese único endpoint.
+- Todo arnés corre sellado en un contenedor con una sola salida: solo llega al endpoint aprobado del modelo y a los servidores de herramientas aprobados. Todo lo demás, incluidos los archivos de la propia computadora, se bloquea.
+- Cada ejecución deja registro: secretos inyectados en tiempo de ejecución, un modelo fijado, un registro de auditoría y límites de uso y de costo.
+
+## Términos clave
+
+| Término | Qué significa |
+|---|---|
+| API | La puerta por la que tu software llama al modelo |
+| Endpoint | La dirección a la que tu código manda las solicitudes |
+| Llave de API | La credencial con la que tu código se identifica ante la API; nunca va escrita en el código |
+| Tres puertas de entrada | La API del proveedor, la versión alojada en un proveedor de nube y la plataforma aprobada de tu organización |
+| Plataforma aprobada (gateway) | La puerta de tu organización que pone varios modelos detrás de un solo acceso, con revisión, control de acceso y registro |
+| Versión fijada | El nombre exacto de la versión del modelo en la configuración, para que no cambie sin que lo decidas |
+| Contenedor | Una caja sellada con tu código y sus dependencias, que corre igual en cualquier lado y solo llega a donde le permites |
+| Lista de permitidos | La lista de los únicos destinos de red a los que puede llegar el contenedor |
+| Secretos en tiempo de ejecución | Llaves y contraseñas que un gestor de secretos inyecta al arrancar, en vez de guardarse en el código o en la imagen |
+| Registro de auditoría | El registro de cada ejecución: qué entró, qué modelo se llamó, qué salió y quién lo revisó |
+| Límites de uso y de costo | Los topes de solicitudes y de gasto que detienen una ejecución antes de que la factura sorprenda |
+
+## Pruébalo
+
+Un ejercicio de autoestudio de 15 minutos, basado en el ejercicio del video (capítulo 5:34). No necesitas programar.
+
+1. **Léelo (7 minutos).** Abre la diapositiva del ejercicio en `slides.pdf`. Hay un pedazo corto de pseudocódigo que resume un documento. Encuentra cinco problemas. Las pistas están en la misma diapositiva; tápalas si quieres el reto. Si te atoras, repasa los seis trabajos que ahora son de tu código y los cuatro hábitos de la sesión.
+2. **Enciérralo (6 minutos).** Para un flujo de trabajo semanal que resume contratos, dibuja el contenedor en blanco y llénalo: qué hay adentro, el único endpoint al que puede llegar, de dónde viene la llave, qué registra cada ejecución y su límite de uso y de costo.
+3. **Cierra (2 minutos).** Si lo primero que encontraste fue la llave en el código, le pasa a casi todo el mundo. Anota qué cambiarías mañana en un script real de tu equipo.
+
+## Pon a prueba lo aprendido
+
+Las seis preguntas de repaso de la guía maestra. Intenta responder antes de abrir cada respuesta.
+
+1. Cuando tu código llama al modelo en lugar de la app de chat, ¿de qué tiene que hacerse cargo tu equipo?
+   <details><summary>Respuesta</summary>De los seis trabajos que hacía la app de chat: instrucciones (prompts guardados), manejo de datos, registro, llaves y red, revisión humana y límites de costo.</details>
+2. Nombra los tres tipos de endpoint.
+   <details><summary>Respuesta</summary>La API del propio proveedor, la versión alojada en un proveedor de nube y una plataforma aprobada o gateway.</details>
+3. ¿Qué eliges primero, la puerta o el modelo, y por qué?
+   <details><summary>Respuesta</summary>La puerta. El modelo es el mismo detrás de cada puerta; lo que cambia es el contrato: términos, retención de datos y aprobación.</details>
+4. ¿Por qué dejar el endpoint en la configuración?
+   <details><summary>Respuesta</summary>Para que cambiar sea un cambio de una línea y la lista de permitidos de la red coincida con él.</details>
+5. ¿A qué puede llegar un contenedor?
+   <details><summary>Respuesta</summary>Solo al endpoint aprobado del modelo y a los servidores de herramientas aprobados. Todo lo demás, incluidos los archivos de la propia computadora, se bloquea.</details>
+6. Nombra los cuatro controles de ejecución.
+   <details><summary>Respuesta</summary>Secretos inyectados en tiempo de ejecución desde un gestor de secretos, versión del modelo fijada, registro de auditoría de cada ejecución y límites de uso y de costo.</details>
+
+## Para leer más
+
+- [Generalidades del protocolo HTTP](https://developer.mozilla.org/es/docs/Web/HTTP/Overview), la explicación de MDN en español de cómo viaja una solicitud y su respuesta, la base de toda API
+- [Configuración](https://12factor.net/es/config), el factor III de la metodología de doce factores, en español: el endpoint y las llaves viven en el entorno, no en el código
+- [OWASP API Security Top 10](https://owasp.org/API-Security/) (en inglés), los diez riesgos más comunes al exponer y consumir APIs
+- [Building best practices](https://docs.docker.com/build/building/best-practices/) (en inglés), la guía oficial de Docker: imagen base fijada, build multietapa y nada de secretos adentro
+- [Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html) (en inglés), la lista de OWASP para correr contenedores con el mínimo acceso
 
 ## Capítulos
 

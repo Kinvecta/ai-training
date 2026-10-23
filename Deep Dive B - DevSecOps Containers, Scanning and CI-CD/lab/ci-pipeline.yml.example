@@ -1,0 +1,203 @@
+# Annotated example: build, test, scan, sign and push the ticket-desk MCP server image.
+#
+# This file is an EXAMPLE and is named .yml.example on purpose, so it does not run in this repository.
+# To use it: copy it to .github/workflows/release.yml in a repository whose root holds the Deep Dive A
+# lab files (server.py, app.py, test_server.py, requirements*.txt) plus the Dockerfile and .dockerignore
+# from this folder, then replace every <full-commit-sha> as described below.
+#
+# Every third-party action is pinned to a full 40-character commit SHA, not a tag. A tag can be moved
+# by anyone with push access to that repository, which is exactly what happened to a scanner's action
+# in March 2026. The SHAs are left as placeholders because a wrong SHA is worse than none: look each one
+# up on the action's Releases page (the commit behind the tag named in the comment), or let a tool such
+# as Renovate ("helpers:pinGitHubActionDigests") or pinact fill and maintain them. Majors named in the
+# comments were checked in October 2026 and will move.
+#
+# The flow: test -> build locally -> scan the local image -> only then push -> sign the digest ->
+# attach the SBOM and provenance to the same digest -> verify. Staging and production deploy that digest.
+
+name: ticket-desk release (example)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege by default. Jobs opt in to more below.
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}          # for example your-org/ticket-desk
+
+jobs:
+  # ------------------------------------------------------------------
+  # 1) Source checks: secrets in history, our own code, the Dockerfile
+  # ------------------------------------------------------------------
+  source-checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write                      # upload SARIF to code scanning
+    steps:
+      - uses: actions/checkout@<full-commit-sha>  # v7
+        with:
+          fetch-depth: 0                          # full history, so secret scanning sees old commits
+
+      - name: Secret scan (git history)
+        uses: gitleaks/gitleaks-action@<full-commit-sha>   # v3; organization repos need GITLEAKS_LICENSE
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dockerfile and config scan
+        uses: aquasecurity/trivy-action@<full-commit-sha>  # v0.36.0 (use v0.35.0 or newer; older tags were hijacked)
+        with:
+          scan-type: config
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: "1"                          # misconfiguration breaks the build
+
+  # ------------------------------------------------------------------
+  # 2) Unit tests and the tool-list gate (from Deep Dive A, exercise 4)
+  # ------------------------------------------------------------------
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<full-commit-sha>  # v7
+      - uses: actions/setup-python@<full-commit-sha>  # v7
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: python -m pytest -q
+      - uses: actions/setup-node@<full-commit-sha>  # v7; the Inspector needs Node 22.19+
+        with:
+          node-version: "22"
+      - name: Tool list must match the committed snapshot
+        # A changed tool name, description or schema is a change-control event. The snapshot was
+        # created with the same command and committed (see Deep Dive A lab/exercises.md).
+        run: |
+          npx --yes @modelcontextprotocol/inspector@2.12.0 --cli python server.py \
+            --method tools/list --format json | python -m json.tool | diff -u tools.snapshot.json -
+
+  # ------------------------------------------------------------------
+  # 3) Build, scan before push, push, sign the digest, attest
+  # ------------------------------------------------------------------
+  build-scan-sign:
+    needs: [source-checks, tests]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write                             # push to GHCR
+      id-token: write                             # OIDC token for keyless signing
+      attestations: write                         # GitHub artifact attestations
+      artifact-metadata: write                    # required by actions/attest v4
+      security-events: write
+    steps:
+      - uses: actions/checkout@<full-commit-sha>  # v7
+      - uses: docker/setup-buildx-action@<full-commit-sha>  # v4
+
+      - id: meta
+        uses: docker/metadata-action@<full-commit-sha>  # v6
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+
+      - name: Build and load locally (not pushed yet)
+        uses: docker/build-push-action@<full-commit-sha>  # v7
+        with:
+          context: .
+          load: true
+          push: false
+          tags: local/ticket-desk:scan
+          build-args: GIT_SHA=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Scan the local image (gate)
+        uses: aquasecurity/trivy-action@<full-commit-sha>  # v0.36.0
+        with:
+          image-ref: local/ticket-desk:scan
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true                    # the gate is about what we can fix today
+          scanners: vuln,secret,misconfig
+          exit-code: "1"                          # break the build before anything leaves CI
+          format: sarif
+          output: trivy.sarif
+      - uses: github/codeql-action/upload-sarif@<full-commit-sha>  # v4
+        if: always()
+        with:
+          sarif_file: trivy.sarif
+
+      # Everything below runs only on pushes to main, never on pull requests from forks.
+      - name: Log in to the registry
+        if: github.event_name == 'push'
+        uses: docker/login-action@<full-commit-sha>  # v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}   # short-lived, scoped to this job; no stored registry key
+
+      - name: Build and push (same cache, identical layers)
+        if: github.event_name == 'push'
+        id: push
+        uses: docker/build-push-action@<full-commit-sha>  # v7
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: GIT_SHA=${{ github.sha }}
+          cache-from: type=gha
+          provenance: mode=max                    # BuildKit SLSA provenance attestation
+          sbom: true                              # BuildKit SBOM attestation
+
+      - name: SBOM with Syft (CycloneDX), stored as a build artifact
+        if: github.event_name == 'push'
+        uses: anchore/sbom-action@<full-commit-sha>  # v0
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}
+          format: cyclonedx-json
+          output-file: sbom.cdx.json
+          upload-artifact: true
+
+      - name: Install Cosign
+        if: github.event_name == 'push'
+        uses: sigstore/cosign-installer@<full-commit-sha>  # v4.1.x (installs Cosign 3.x)
+
+      - name: Sign the digest (keyless) and attach the SBOM
+        if: github.event_name == 'push'
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}
+        run: |
+          # Keyless: the job's OIDC identity gets a short-lived certificate; the signature is logged in Rekor.
+          cosign sign --yes "$IMAGE"
+          cosign attest --yes --type cyclonedx --predicate sbom.cdx.json "$IMAGE"
+
+      - name: GitHub build provenance attestation
+        if: github.event_name == 'push'
+        uses: actions/attest@<full-commit-sha>  # v4
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
+
+      - name: Verify what we just shipped (the same check a deploy gate runs)
+        if: github.event_name == 'push'
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}
+        run: |
+          cosign verify \
+            --certificate-identity-regexp "^https://github.com/${{ github.repository }}/" \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+            "$IMAGE"
+          echo "Deploy this exact reference, not a tag: $IMAGE"
+
+# What is deliberately NOT here:
+# - No long-lived cloud or registry keys in secrets. The job uses GITHUB_TOKEN and OIDC.
+# - No "|| true" after a scanner. A failed gate fails the job.
+# - No push before scan. The image is built locally, scanned, and only then rebuilt from cache and pushed.
+# - No rebuild for production. Staging and production deploy ${{ steps.push.outputs.digest }}.
+# - No evals job, because ticket-desk calls no model. A workload that does should pin the model ID and
+#   prompt version and run evals as a gate here, with a separate low-quota key in a protected environment.

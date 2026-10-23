@@ -5,7 +5,10 @@ __pycache__/
 .venv/
 node_modules/
 .env
+.env.*
 *.env
+*.log
+dist/
 audio/
 video/
 *.mp4

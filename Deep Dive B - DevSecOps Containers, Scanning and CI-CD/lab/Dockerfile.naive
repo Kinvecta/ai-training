@@ -1,0 +1,16 @@
+# The "find the problems" exercise from the video, as a file you can scan.
+# Do not use this. It is deliberately wrong in at least eight places (answers in README.md).
+# The key value is a placeholder; the problem is that a key is here at all.
+
+FROM python:latest
+COPY . /app
+RUN pip install -r /app/requirements.txt
+ENV OPENAI_API_KEY=REDACTED
+RUN rm /app/.env
+CMD ["python", "/app/agent.py"]
+
+# --- the pipeline that went with it (excerpt) ---
+# .github/workflows/ci.yml
+# - uses: aquasecurity/trivy-action@master
+# - run: docker push ghcr.io/acme/agent:latest
+# - run: trivy image ghcr.io/acme/agent:latest || true

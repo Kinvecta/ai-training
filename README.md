@@ -31,11 +31,13 @@
 - [hello](#hello)
 - [start here](#start-here)
 - [course](#course)
+- [how the series fits together](#how-the-series-fits-together)
 - [video tutorials](#video-tutorials)
 - [run the MCP lab](#run-the-mcp-lab)
 - [teach it](#teach-it)
 - [FAQ](#faq)
 - [what's inside](#whats-inside)
+- [contributing](#contributing)
 - [star history](#star-history)
 - [maintenance and security](#maintenance-and-security)
 - [en español](#en-español)
@@ -84,7 +86,7 @@ Clone the repo and run the ticket-desk MCP server and its tests, in Python or Ty
 
 Each video is also a 90-minute classroom module. Use the slides, transcripts and the master guide's check questions.
 
-[Course](#course) · [master guide (PDF)](master-guide.pdf) · [syllabus](course/)
+[Course](#course) · [master guide (PDF)](master-guide.pdf) · [syllabus](course/) · [learning paths](docs/learning-paths.md) · [glossary](docs/glossary.md)
 
 </td>
 </tr>
@@ -99,7 +101,7 @@ All ten videos are out, in English and Spanish. Each one has slides as a PDF and
 | **1** | **[What an LLM is, and the types of harnesses](Session%201%20-%20What%20an%20LLM%20Is/)**<br><sub>Everyone · 11:12</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/b2TARTHX9MI) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%201%20-%20What%20an%20LLM%20Is/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%201%20-%20What%20an%20LLM%20Is/transcript/Session%201%20-%20What%20an%20LLM%20Is%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%201%20-%20Qu%C3%A9%20es%20un%20LLM/) |
 | **2** | **[AI resilience: switch models and vendors without rebuilding](Session%202%20-%20AI%20Resilience/)**<br><sub>Everyone · 8:41</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/BnhkCMgtz7A) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%202%20-%20AI%20Resilience/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%202%20-%20AI%20Resilience/transcript/Session%202%20-%20AI%20Resilience%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%202%20-%20Resiliencia%20en%20IA/) |
 | **3** | **[Safe prompting and verification](Session%203%20-%20Safe%20Prompting%20and%20Verification/)**<br><sub>Everyone · 6:41</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/dVc_o2oqTbQ) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%203%20-%20Safe%20Prompting%20and%20Verification/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%203%20-%20Safe%20Prompting%20and%20Verification/transcript/Session%203%20-%20Safe%20Prompting%20and%20Verification%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%203%20-%20Prompts%20seguros%20y%20verificaci%C3%B3n/) |
-| **4** | **[Tokens, context and how AI finds your data](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/)**<br><sub>Everyone · 7:00</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/YGxlkAdf1RQ) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/transcript/Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%204%20-%20Tokens%2C%20contexto%20y%20c%C3%B3mo%20encuentra%20la%20IA%20tus%20datos/) |
+| **4** | **[Tokens, context and how AI finds your data](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/)**<br><sub>Everyone · 6:59</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/YGxlkAdf1RQ) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/transcript/Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%204%20-%20Tokens%2C%20contexto%20y%20c%C3%B3mo%20encuentra%20la%20IA%20tus%20datos/) |
 | **5** | **[APIs, endpoints and containers](Session%205%20-%20APIs%2C%20Endpoints%20and%20Containers/)**<br><sub>Automators · 6:07</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/LbK3n2ddfek) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%205%20-%20APIs%2C%20Endpoints%20and%20Containers/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%205%20-%20APIs%2C%20Endpoints%20and%20Containers/transcript/Session%205%20-%20APIs%2C%20Endpoints%20and%20Containers%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%205%20-%20APIs%2C%20endpoints%20y%20contenedores/) |
 | **6** | **[Building workflows that don't break](Session%206%20-%20Building%20Workflows/)**<br><sub>Automators · 7:04</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/zAT5IMap_YI) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%206%20-%20Building%20Workflows/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%206%20-%20Building%20Workflows/transcript/Session%206%20-%20Building%20Workflows%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%206%20-%20C%C3%B3mo%20construir%20flujos%20de%20trabajo/) |
 | **7** | **[Tools, MCP and prompt injection](Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/)**<br><sub>Automators · 7:35</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/tU5EvfIRKd8) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/transcript/Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Sesi%C3%B3n%207%20-%20Herramientas%2C%20MCP%20e%20inyecci%C3%B3n%20de%20prompts/) |
@@ -107,7 +109,19 @@ All ten videos are out, in English and Spanish. Each one has slides as a PDF and
 | **A** | **[Deep dive A: build an MCP server from scratch](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/)**<br><sub>Builders · 20:30</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/UQZCd-izZZI) [![Lab](https://img.shields.io/badge/open-lab-orange)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/lab/) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/slides.pdf) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/transcript/Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Inmersi%C3%B3n%20t%C3%A9cnica%20A%20-%20Construye%20un%20servidor%20MCP%20desde%20cero/) |
 | **B** | **[Deep dive B: DevSecOps: containers, scanning and CI/CD](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/)**<br><sub>Builders and reviewers · 19:41</sub> | [![YouTube](https://img.shields.io/badge/watch-YouTube-red?logo=youtube&logoColor=white)](https://youtu.be/zGLWpj00n3U) | [![Slides](https://img.shields.io/badge/view-slides%20%28PDF%29-8A2BE2)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/slides.pdf) [![Research brief](https://img.shields.io/badge/read-brief-blue)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/research-brief.md) [![Transcript](https://img.shields.io/badge/read-transcript-lightgrey)](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/transcript/Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD%20-%20transcript.txt) | [![Español](https://img.shields.io/badge/ver-en%20espa%C3%B1ol-006847)](es/Inmersi%C3%B3n%20t%C3%A9cnica%20B%20-%20DevSecOps%2C%20contenedores%2C%20escaneo%20y%20el%20pipeline%20de%20CI-CD/) |
 
-The series follows five stages of AI use: **1** safe everyday use, **2** the API in a container, **3** fixed workflows, **4** tool calling, **5** agents and skills. Everyone starts at Stage 1. The [syllabus](course/) lists every rule of thumb and what you can do by the end.
+Not sure where to start? See the [learning paths](docs/learning-paths.md) for everyone, automators, builders, program leads and trainers, and the [glossary](docs/glossary.md) for every term the course uses. The [syllabus](course/) lists every rule of thumb and what you can do by the end.
+
+## how the series fits together
+
+The series follows five stages of AI use. Each stage adds one capability and one new risk, and everyone starts at Stage 1.
+
+| Stage | What you do | New risk | Sessions |
+|:--:|---|---|---|
+| **1** | Safe everyday use: the right tool for the data, briefed prompts, verified output, a person signs | Wrong data in the wrong tool; unverified claims | [1](Session%201%20-%20What%20an%20LLM%20Is/), [2](Session%202%20-%20AI%20Resilience/), [3](Session%203%20-%20Safe%20Prompting%20and%20Verification/), [4](Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/) |
+| **2** | The API in a container: your own code calls the model, with the endpoint in config and one way out | Your code now owns the controls | [5](Session%205%20-%20APIs%2C%20Endpoints%20and%20Containers/), [B](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/) |
+| **3** | Fixed workflows: the same steps every run, a check on every output, approval before it ships | Unchecked output at scale | [6](Session%206%20-%20Building%20Workflows/) |
+| **4** | Tool calling: the model can look things up and act, through MCP or native tools | Prompt injection; actions without a gate | [7](Session%207%20-%20Tools%2C%20MCP%20and%20Prompt%20Injection/), [A](Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/) |
+| **5** | Agents and skills: packaged know-how, agents with guardrails, a shared library, measured results | Autonomy without limits or evidence | [8](Session%208%20-%20Agents%2C%20Skills%20and%20Running%20the%20Program/) |
 
 ## video tutorials
 
@@ -145,7 +159,7 @@ Watch the sessions in order in the [YouTube playlist](https://www.youtube.com/pl
 <td width="40%"><a href="https://youtu.be/YGxlkAdf1RQ"><img src="Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/thumbnail.png" width="100%" alt="Watch Session 4: Tokens, context and how AI finds your data"></a></td>
 <td width="60%" valign="top">
 <b><a href="https://youtu.be/YGxlkAdf1RQ">Session 4 · Tokens, context and how AI finds your data</a></b><br>
-<sub><b>Length:</b> 7:00 · <b>For:</b> Everyone · <a href="Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/">Materials&nbsp;→</a></sub>
+<sub><b>Length:</b> 6:59 · <b>For:</b> Everyone · <a href="Session%204%20-%20Tokens%2C%20Context%20and%20How%20AI%20Finds%20Your%20Data/">Materials&nbsp;→</a></sub>
 <p>Why did the AI bill surprise you? Why did it forget what you said? Why couldn't it find the table? All three come down to what the model can see. Session 4 of the series explains tokens, the context window, and the different ways AI tools fetch your data.</p>
 <p><b>Rule of thumb:</b> <i>Send less. Cache what's stable. Fetch with the finder that fits.</i></p>
 </td>
@@ -187,18 +201,18 @@ Watch the sessions in order in the [YouTube playlist](https://www.youtube.com/pl
 </td>
 </tr>
 <tr>
-<td width="40%"><a href="https://youtu.be/UQZCd-izZZI"><img src="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/thumbnail.png" width="100%" alt="Watch Deep Dive A: Deep dive A: build an MCP server from scratch"></a></td>
+<td width="40%"><a href="https://youtu.be/UQZCd-izZZI"><img src="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/thumbnail.png" width="100%" alt="Watch Deep Dive A: build an MCP server from scratch"></a></td>
 <td width="60%" valign="top">
-<b><a href="https://youtu.be/UQZCd-izZZI">Deep Dive A · Deep dive A: build an MCP server from scratch</a></b><br>
+<b><a href="https://youtu.be/UQZCd-izZZI">Deep Dive A · Build an MCP server from scratch</a></b><br>
 <sub><b>Length:</b> 20:30 · <b>For:</b> Builders · <a href="Deep%20Dive%20A%20-%20Build%20an%20MCP%20Server%20from%20Scratch/">Materials&nbsp;→</a></sub>
 <p>The Model Context Protocol (MCP) changed in July 2026, and most tutorials are now out of date. In this deep dive of the series, we build a small MCP server, ticket-desk, from scratch on the current spec and the version-two SDKs, and we build it the DevSecOps way: security at every step, not bolted on at the end.</p>
 <p><b>Rule of thumb:</b> <i>Few tools, tight schemas. A person confirms every action. Validate your own token. Never pass it on.</i></p>
 </td>
 </tr>
 <tr>
-<td width="40%"><a href="https://youtu.be/zGLWpj00n3U"><img src="Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/thumbnail.png" width="100%" alt="Watch Deep Dive B: Deep dive B: DevSecOps: containers, scanning and CI/CD"></a></td>
+<td width="40%"><a href="https://youtu.be/zGLWpj00n3U"><img src="Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/thumbnail.png" width="100%" alt="Watch Deep Dive B: DevSecOps: containers, scanning and CI/CD"></a></td>
 <td width="60%" valign="top">
-<b><a href="https://youtu.be/zGLWpj00n3U">Deep Dive B · Deep dive B: DevSecOps: containers, scanning and CI/CD</a></b><br>
+<b><a href="https://youtu.be/zGLWpj00n3U">Deep Dive B · DevSecOps: containers, scanning and CI/CD</a></b><br>
 <sub><b>Length:</b> 19:41 · <b>For:</b> Builders and reviewers · <a href="Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/">Materials&nbsp;→</a></sub>
 <p>How do you ship software you can actually trust, and keep trusting it? This deep dive of the series walks through DevSecOps for AI workloads end to end: what a container really is, where containers run, how to harden an image, where secrets belong, how scanning and triage work, how signing proves you shipped the same box you scanned, how the CI/CD pipeline enforces it all, and how firewalls fence it in, in both directions.</p>
 <p><b>Rule of thumb:</b> <i>Pin everything. Scan before it ships. Sign it, and ship the same digest.</i></p>
@@ -239,7 +253,7 @@ The series was built as a train-the-trainer course. To run a session with your t
 3. Use the [master guide](master-guide.pdf) for each session's key points, chapters and six check questions with model answers.
 4. Close with the session's rule of thumb, and bridge to the next session.
 
-Sessions 1–4 need no technical background. Sessions 5–8 assume people who will automate work. The deep dives assume developers or platform engineers.
+Sessions 1–4 need no technical background. Sessions 5–8 assume people who will automate work. The deep dives assume developers or platform engineers. The [learning paths](docs/learning-paths.md) give a suggested 90-minute slot structure and the time each track takes, and the [glossary](docs/glossary.md) is a handout-ready list of every term.
 
 ## FAQ
 
@@ -282,7 +296,13 @@ Not in this repository. The slides, transcripts and the master guide (with check
 | [`Deep Dive B`](Deep%20Dive%20B%20-%20DevSecOps%20Containers,%20Scanning%20and%20CI-CD/) | Slides, transcript and the [research brief](Deep%20Dive%20B%20-%20DevSecOps%20Containers%2C%20Scanning%20and%20CI-CD/research-brief.md) with sources |
 | [`es/`](es/) | The whole series in Spanish (es-MX) |
 | [`course/`](course/) | Syllabus: sessions, audiences, rules of thumb and outcomes |
+| [`docs/`](docs/) | [Glossary](docs/glossary.md), [learning paths](docs/learning-paths.md) and the README's images |
 | [`master-guide.pdf`](master-guide.pdf) | Key points, chapters and check questions with answers for every session |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), [`CITATION.cff`](CITATION.cff) | How to report an error, how to report a vulnerability, how to cite the course |
+
+## contributing
+
+The repository is not actively maintained, so there is no roadmap and pull requests may not get a response. If you find an error in the content, open a [content error report](https://github.com/Kinvecta/ai-training/issues/new/choose). To change or extend the material, fork the repository; the content license (CC BY 4.0) and the code license (MIT) both allow it with attribution. Details in [CONTRIBUTING.md](CONTRIBUTING.md). To cite the course, use [CITATION.cff](CITATION.cff) or the "Cite this repository" button on GitHub.
 
 ## star history
 

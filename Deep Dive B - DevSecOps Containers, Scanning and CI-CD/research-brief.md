@@ -186,9 +186,9 @@ spec:
 | **VEX** | Vulnerability Exploitability eXchange: a machine-readable statement that "this CVE is not exploitable in our product because..." (OpenVEX, CycloneDX VEX, CSAF VEX) | Cuts false positives; Trivy and Grype can consume VEX |
 | **Fixed / unfixed** | Whether an upstream patch exists | Gates usually fail only on *fixable* criticals/highs |
 
-**Prioritization recipe for the deck:** treat KEV first, then high EPSS, then high CVSS, then the rest, and focus on what is fixable and reachable. EPSS research shows that patching everything rated CVSS 7+ is a lot of effort for little efficiency compared with EPSS-driven prioritization [49].
+**Prioritization recipe:** treat KEV first, then high EPSS, then high CVSS, then the rest, and focus on what is fixable and reachable. EPSS research shows that patching everything rated CVSS 7+ is a lot of effort for little efficiency compared with EPSS-driven prioritization [49].
 
-**Ecosystem caveat:** The CVE program nearly lost funding in April 2025. CISA extended MITRE's contract roughly 11 months, and in Sept 2025 published a "Quality Era" roadmap [51]. **[UNVERIFIED: contract status after March 2026. Check cve.org before delivery.]** NVD enrichment backlogs since 2024 are why scanners increasingly pull from GitHub Advisory DB, OSV and vendor feeds as well as NVD.
+**Ecosystem caveat:** The CVE program nearly lost funding in April 2025. CISA extended MITRE's contract roughly 11 months, and in Sept 2025 published a "Quality Era" roadmap [51]. **[UNVERIFIED: contract status after March 2026. Check cve.org before relying on this.]** NVD enrichment backlogs since 2024 are why scanners increasingly pull from GitHub Advisory DB, OSV and vendor feeds as well as NVD.
 
 ### 3.3 Scan categories
 
@@ -384,7 +384,7 @@ CI/CD is an **assembly line with inspection stations**. Every change goes down t
 
 ### 5.4 Example GitHub Actions workflow (LLM workflow container)
 
-**Before using:** Replace every `@<SHA>` with the full 40-character commit SHA of the tag in the comment. Resolve them yourself from each action's Releases page, or let Renovate (`helpers:pinGitHubActionDigests`) or `pinact` do it. The SHAs are deliberately not filled in here because they could not be verified from this environment, and a wrong SHA is worse than none. Tags shown are the latest majors referenced in each action's README on 20 Oct 2026 [14][15][16][17][18][19][20][21].
+**Before using:** Replace every `@<SHA>` with the full 40-character commit SHA of the tag in the comment. Resolve them yourself from each action's Releases page, or let Renovate (`helpers:pinGitHubActionDigests`) or `pinact` do it. The SHAs are deliberately not filled in here because they could not be verified from this environment, and a wrong SHA is worse than none. Tags shown are the latest majors referenced in each action's README on 20 Oct 2026 [14][15][16][17][18][19][20][21]; `actions/checkout`, `actions/setup-python`, `github/codeql-action` and `sigstore/cosign-installer` were re-checked against their GitHub pages on 22 Oct 2026 (v7, v7, v4 and v4.1.2).
 
 ```yaml
 # .github/workflows/release.yml
@@ -410,7 +410,7 @@ jobs:
   secrets:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@<SHA>               # v6
+      - uses: actions/checkout@<SHA>               # v7
         with: { fetch-depth: 0 }                   # full history for secret scanning
       - uses: gitleaks/gitleaks-action@<SHA>       # v3
         env:
@@ -422,10 +422,10 @@ jobs:
     container:
       image: semgrep/semgrep@sha256:<digest>       # pin the scanner image too
     steps:
-      - uses: actions/checkout@<SHA>               # v6
+      - uses: actions/checkout@<SHA>               # v7
       # Community Edition, explicit rulesets (no --config auto, which needs metrics on)
       - run: semgrep scan --config p/python --config p/owasp-top-ten --config p/secrets --error --sarif --output semgrep.sarif
-      - uses: github/codeql-action/upload-sarif@<SHA>   # v4 [UNVERIFIED major]
+      - uses: github/codeql-action/upload-sarif@<SHA>   # v4
         if: always()
         with: { sarif_file: semgrep.sarif }
     permissions:
@@ -435,7 +435,7 @@ jobs:
   iac:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@<SHA>               # v6
+      - uses: actions/checkout@<SHA>               # v7
       - name: Trivy config scan (Dockerfile, k8s manifests, Helm)
         uses: aquasecurity/trivy-action@<SHA>      # v0.36.0  (v0.35.0+ are post-incident safe)
         with:
@@ -451,8 +451,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: evals                             # holds a low-quota, eval-only API key
     steps:
-      - uses: actions/checkout@<SHA>               # v6
-      - uses: actions/setup-python@<SHA>           # v6 [UNVERIFIED major]
+      - uses: actions/checkout@<SHA>               # v7
+      - uses: actions/setup-python@<SHA>           # v7
         with: { python-version: "3.13" }
       - run: pip install --require-hashes -r requirements-dev.txt
       - run: pytest -q
@@ -477,7 +477,7 @@ jobs:
       artifact-metadata: write   # required by actions/attest@v4
       security-events: write     # upload SARIF
     steps:
-      - uses: actions/checkout@<SHA>               # v6
+      - uses: actions/checkout@<SHA>               # v7
       - uses: docker/setup-buildx-action@<SHA>     # v4
 
       - id: meta
@@ -510,7 +510,7 @@ jobs:
           exit-code: "1"                           # break the build
           format: sarif
           output: trivy.sarif
-      - uses: github/codeql-action/upload-sarif@<SHA>   # v4 [UNVERIFIED major]
+      - uses: github/codeql-action/upload-sarif@<SHA>   # v4
         if: always()
         with: { sarif_file: trivy.sarif }
 
@@ -546,7 +546,7 @@ jobs:
 
       - name: Install Cosign
         if: github.event_name == 'push'
-        uses: sigstore/cosign-installer@<SHA>      # v4.1.0 (installs cosign v3.x)
+        uses: sigstore/cosign-installer@<SHA>      # v4.1.x (installs cosign v3.x)
 
       - name: Sign image by digest (keyless) + attach SBOM attestation
         if: github.event_name == 'push'
@@ -685,7 +685,7 @@ spec:
 | Item | What it is | Current status |
 |---|---|---|
 | **NIST SP 800-218 (SSDF) v1.1** | Secure Software Development Framework: practice groups PO (Prepare the Organization), PS (Protect the Software), PW (Produce Well-Secured Software), RV (Respond to Vulnerabilities) | **Final** (Feb 2022) [36] |
-| **NIST SP 800-218 Rev. 1 (SSDF v1.2)** | Update ordered by EO 14306 | **Initial public draft 17 Dec 2025**, comments closed 30 Jan 2026; **still draft on NIST's page as of 20 Oct 2026** despite the EO's ~120-day finalization target [36][37][39]. Flag as "check before delivery." |
+| **NIST SP 800-218 Rev. 1 (SSDF v1.2)** | Update ordered by EO 14306 | **Initial public draft 17 Dec 2025**, comments closed 30 Jan 2026; **still draft on NIST's page as of 20 Oct 2026** despite the EO's ~120-day finalization target [36][37][39]. Check NIST's SSDF page before relying on this. |
 | **NIST SP 800-218A** | SSDF Community Profile for Generative AI and Dual-Use Foundation Models; audiences are AI model producers, AI system producers, and acquirers | **Final, 26 Jul 2024** [38]. Originally tasked under EO 14110 (since revoked); the document stands as NIST guidance. |
 | **NIST SP 800-190** | Application Container Security Guide: risks and countermeasures for images, registries, orchestrators, containers and host OS | **Final, Sept 2017; no revision announced** [2]. Still the canonical federal container reference. |
 | **NIST SP 800-204D** | Integrating software supply chain security into DevSecOps CI/CD pipelines | **Final, Feb 2024** [53] |
@@ -772,7 +772,7 @@ spec:
 
 1. SSDF v1.2 final status (csrc.nist.gov/projects/ssdf) [36].
 2. CVE program funding/administration after March 2026 [51].
-3. Exact SHAs for every GitHub Action in §5.4, and the current majors of `github/codeql-action` and `actions/setup-python`.
+3. Exact SHAs for every GitHub Action in §5.4, and the current majors of each action (checked 22 Oct 2026; they move often).
 4. DoD DevSecOps document versions and any new SWFT/CSRMC implementation guidance [43][44][45].
 5. FedRAMP 20x phase dates (the page says dates are estimates) [46].
 6. Whether `snyk-agent-scan` sends data off-host (important for CUI/classified labs) [26].
@@ -828,7 +828,7 @@ Think of a building with several locked doors: the gate at the street, the lobby
 | 4 | **Host firewall** | Filters traffic on the server itself | iptables / nftables, firewalld, ufw | **Gotcha:** Docker routes container traffic in the `nat` table, "effectively ignoring your firewall configuration"; Docker states that "Docker and ufw use firewall rules in ways that make them incompatible" [62]. Put your rules in the `DOCKER-USER` chain, which is processed before Docker's own rules [71], or don't publish ports on public interfaces (bind to 127.0.0.1). Docker's nftables backend is still marked experimental [62]. |
 | 5 | **Kubernetes NetworkPolicy** | Pod-to-pod and pod-to-outside rules by labels, namespaces, IP blocks and ports | Built-in API, enforced by the CNI: Calico, Cilium, Antrea; GKE Dataplane V2; AKS/EKS network policy options | Start with **default-deny ingress and egress** per namespace, then allow DNS and named destinations [59]. A policy does nothing if the CNI doesn't enforce it. Standard NetworkPolicy has **no hostname field**, so it can't express "allow `api.anthropic.com`". |
 | 6 | **FQDN-aware policy (CNI)** | Allow egress by DNS name | Cilium `toFQDNs` (watches DNS answers through its DNS proxy, so names map to the right IPs) [72]; GKE FQDN network policies (Dataplane V2) [73]; Calico Enterprise DNS policies | The in-cluster alternative to an egress proxy. Cilium can combine `toFQDNs` with port and L7 rules, e.g. `*.github.com` on TCP 443 only [72]. |
-| 7 | **Service mesh** | Mutual TLS between services, identity-based authorization, egress gateways | Istio (incl. ambient mode), Linkerd | mTLS proves which service is calling. An Istio egress gateway funnels outbound traffic through one controlled, logged point **[UNVERIFIED: re-check current Istio egress docs before delivery]**. |
+| 7 | **Service mesh** | Mutual TLS between services, identity-based authorization, egress gateways | Istio (incl. ambient mode), Linkerd | mTLS proves which service is calling. An Istio egress gateway funnels outbound traffic through one controlled, logged point **[UNVERIFIED: re-check current Istio egress docs before relying on this]**. |
 | 8 | **Inside the container** | Least privilege so that a breach can't move | Non-root, read-only root filesystem, dropped capabilities, no shell (section 2) | Not a firewall, but it limits what an attacker who gets in can do. |
 
 ### 12.3 Why hostname allow-lists need a proxy or an FQDN-aware tool
@@ -878,8 +878,8 @@ On a single Linux server, a team enables ufw ("deny incoming") and runs `docker 
 [12] Sigstore blog, "Cosign v3 is now available" (Oct 2025). https://blog.sigstore.dev/cosign-3-0-available/
 [13] SLSA v1.2: What's new and Build Track Basics. https://slsa.dev/spec/v1.2/whats-new · https://slsa.dev/spec/v1.2/build-track-basics · https://slsa.dev/blog/2025/11/announce-slsa-v1.2
 [14] actions/attest (v4) and actions/attest-build-provenance (wrapper note). https://github.com/actions/attest · https://github.com/actions/attest-build-provenance
-[15] docker/build-push-action README (v7; login-action v4, setup-buildx-action v4, checkout v6). https://github.com/docker/build-push-action
-[16] sigstore/cosign-installer README (v4.1.0). https://github.com/sigstore/cosign-installer
+[15] docker/build-push-action README (v7; login-action v4, setup-buildx-action v4). https://github.com/docker/build-push-action · actions/checkout README (v7): https://github.com/actions/checkout · actions/setup-python README (v7): https://github.com/actions/setup-python · github/codeql-action releases (v4): https://github.com/github/codeql-action/releases
+[16] sigstore/cosign-installer README and releases (v4.1.2 at last check). https://github.com/sigstore/cosign-installer
 [17] aquasecurity/trivy-action README (v0.36.0). https://github.com/aquasecurity/trivy-action
 [18] anchore/sbom-action README (v0). https://github.com/anchore/sbom-action
 [19] gitleaks/gitleaks-action README (v3; GITLEAKS_LICENSE for orgs). https://github.com/gitleaks/gitleaks-action
